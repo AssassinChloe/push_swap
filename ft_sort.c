@@ -1,15 +1,57 @@
 #include "push_swap.h"
 
-void ft_quick_sort(t_pile *a)
+void ft_quick_sort(t_pile *a, t_pile *b)
 {
     int pivot;
-    int *tab_b;
-    int size_a;
-    int size_b;
-    int count;
+    int size_init;
+    int i;
 
-    tab_b = NULL;
-    pivot = a->pile[a->size - 1];
+    if (b->size > 1 && ft_checkifreversesorted(b) == 0)
+    {
+        printf("yoh B\n");
+        i = 0;
+        size_init = b->size;
+        pivot = b->pile[b->size - 1];
+        while (i < size_init)
+        if (b->pile[0] >= pivot)
+            ft_pa(a, b);
+        else
+            ft_rb(b);
+        i++;
+    }
+    else if (a->size > 1 && ft_checkifsorted(a) == 0)
+    {
+        printf("yoh A\n");
+        i = 0;
+        size_init = a->size;
+        pivot = a->pile[a->size - 1];
+        while (i < size_init)
+        {
+            if (a->pile[0] <= pivot)
+            {
+                ft_pb(a, b);
+            }
+            else
+                ft_ra(a);
+            i++;
+        }
+    }
+    else
+    {
+        printf("yoh else\n");
+        return;
+    }
+
+    printf("\nA : ");
+    i = 0;
+    while (i < a->size)
+        printf("%d ", a->pile[i++]);
+    i = 0;
+    printf("\nB : ");
+    while (i < b->size)
+        printf("%d ", b->pile[i++]);
+    printf("\n");
+    ft_quick_sort(a, b);
 }
 
 void    ft_sort_3(t_pile *a)
@@ -47,16 +89,22 @@ void    ft_sort_5(t_pile *a)
 }
 void ft_sort(t_pile *a)
 {
+    t_pile b;
+    int i;
+
+    b.pile = NULL;
+    b.size = 0;
+    b.size_max = a->size_max;
     if (a->size_max == 2)
     {
-        ft_sa(a->pile);
+        ft_sa(a);
         return ;
     }
     else if (a->size_max == 3)
         ft_sort_3(a);
-    else if (a->size_max > 3 && a->size_max <= 5)
-        ft_sort_5(a);
+//    else if (a->size_max > 3 && a->size_max <= 5)
+//       ft_sort_5(a);
     else
-        ft_quick_sort(a);
+        ft_quick_sort(a, &b);
     return ;
 }

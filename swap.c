@@ -18,3 +18,11 @@ void ft_ss(t_pile *a, t_pile *b)
     ft_swap_two(b);   
     printf("ss\n");
 }
+
+void ft_swap_two(t_pile *the)
+{
+    int swp;
+    swp = the->pile[0];
+    the->pile[0] = the->pile[1];
+    the->pile[1] = swp;
+}

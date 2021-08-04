@@ -1,29 +1,21 @@
 #include "push_swap.h"
 
-
-void ft_pa(t_pile *a, t_pile *b)
+int ft_pa(t_pile *a, t_pile *b)
 {
-    int tmp;
-    int i;
-    int j;
-    t_pile s_tmp;
-
-    i = 1;
-    j = 0;
-    tmp = b->pile[0];
-    while (i < b->size)
-    {
-        s_tmp.pile[j] = b->pile[i];
-        i++;
-        j++;
-    }
-
-    printf("pa\n");
-    return ;
+    if (ft_addonetop(a, b->pile[0]) < 0)
+        return (-1);
+    if (ft_removeonetop(b) < 0)
+        return (-1);
+        printf("pa\n");
+    return (0);
 }
 
-void ft_pb(t_pile *a, t_pile *b)
+int ft_pb(t_pile *a, t_pile *b)
 {
+    if (ft_addonetop(b, a->pile[0]) < 0)
+        return (-1);  
+    if (ft_removeonetop(a) < 0)
+        return (-1);
     printf("pb\n");
-    return ;
+    return (0);
 }
