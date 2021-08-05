@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/08/05 16:23:30 by cassassi          #+#    #+#              #
+#    Updated: 2021/08/05 16:23:39 by cassassi         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME	= push_swap
 SRCS	= main.c ft_atoll.c ft_isdigit.c ft_sort.c push.c reverse_rotate.c rotate.c swap.c utils.c
 OBJSD	= .obj/

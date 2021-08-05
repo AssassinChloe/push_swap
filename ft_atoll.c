@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 17:21:28 by cassassi          #+#    #+#             */
-/*   Updated: 2021/07/17 21:46:54 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/05 16:40:03 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@ long long	ft_atoll(const char *str)
 {
 	unsigned int	i;
 	int				neg;
-	long long				nb;
+	long long		nb;
 
 	i = 0;
 	neg = 1;
