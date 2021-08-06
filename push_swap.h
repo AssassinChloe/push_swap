@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:24:28 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/05 16:46:25 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/06 17:13:22 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,7 @@ int			ft_addonetop(t_pile *the, int add);
 int			ft_removeonetop(t_pile *the);
 int			ft_freepile(t_pile *the);
 int			ft_checkifreversesorted(t_pile *the);
+int			ft_issmallest(t_pile *the, int pivot);
+int			ft_isbigest(t_pile *the, int pivot);
+int			ft_checkdouble(t_pile *a);
 #endif

@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:08 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/06 12:07:16 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/06 17:00:42 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,13 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 	if (b->size > 1 && ft_checkifreversesorted(b) == 0)
 	{
 		i = 0;
+		while (ft_issmallest(b, b->pile[b->size - 1]) == 1)
+		{
+			ft_rrb(b);
+			ft_pa(a, b);
+		}
 		size_init = b->size;
-		pivot = b->pile[b->size - 1];
+		pivot = b->pile[(b->size - 1)];
 		while (i < size_init)
 		{
 			if (b->pile[0] >= pivot)
@@ -41,8 +46,13 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 	else if (a->size > 1 && ft_checkifsorted(a) == 0)
 	{
 		i = 0;
+		while (ft_isbigest(a, a->pile[a->size - 1]) == 1)
+		{
+			ft_rra(a);
+			ft_pb(a, b);
+		}
 		size_init = a->size;
-		pivot = a->pile[a->size - 1];
+		pivot = a->pile[(a->size - 1)];
 		while (i < size_init)
 		{
 			if (a->pile[0] <= pivot)
@@ -63,6 +73,7 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 		while (b->size > 0)
 			ft_pa(a, b);	
 		free(b->pile);
+/*
 		printf("\nA : ");
 		i = 0;
 		while (i < a->size)
@@ -72,18 +83,20 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 		while (i < b->size)
 			printf("%d ", b->pile[i++]);
 		printf("\n");
+*/
 		free(a->pile);
 		return ;
 	}
-		printf("\nA : ");
-		i = 0;
-		while (i < a->size)
-			printf("%d ", a->pile[i++]);
-		i = 0;
-		printf("\nB : ");
-		while (i < b->size)
-			printf("%d ", b->pile[i++]);
-		printf("\n");
+/*	printf("\nA : ");
+	i = 0;
+	while (i < a->size)
+		printf("%d ", a->pile[i++]);
+	i = 0;
+	printf("\nB : ");
+	while (i < b->size)
+		printf("%d ", b->pile[i++]);
+	printf("\n");
+*/
 	ft_quick_sort(a, b);
 }
 

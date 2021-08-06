@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:47 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/05 16:48:18 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/06 17:11:59 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int ac, char **av)
 	j = 0;
 	if (ac < 3)
 	{
-		printf("error : missing arguments\n");
+		printf("Error\n");
 		return (0);
 	}
 	else
@@ -52,7 +52,7 @@ int	main(int ac, char **av)
 				a.pile[j] = ft_atoll(av[i]);
 				if (a.pile[j] < INT_MIN || a.pile[j] > INT_MAX)
 				{
-					printf("error : int overflow/underflow\n");
+					printf("Error\n");
 					return (0);
 				}
 				j++;
@@ -60,16 +60,41 @@ int	main(int ac, char **av)
 			}
 			else
 			{
-				printf("Some of the inputs are wrong\n");
+				printf("Error\n");
 				return (0);
 			}
 		}
 		a.size_max = j;
 		a.size = j;
 	}
+	if (ft_checkdouble(&a) == 1)
+	{
+		printf("Error\n");
+		return (0);
+	}
 	if (ft_checkifsorted(&a) == 1)
 		return (0);
 	ft_sort(&a);
+	return (0);
+}
+
+int	ft_checkdouble(t_pile *a)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < a->size - 1)
+	{
+		j = i + 1;
+		while (j < a->size)
+		{
+			if (a->pile[i] == a->pile[j])
+				return (1);
+			j++;
+		}
+		i++;
+	}
 	return (0);
 }
 
