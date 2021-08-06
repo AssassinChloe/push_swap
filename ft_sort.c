@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:08 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/05 18:32:50 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/06 12:07:16 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,13 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 		while (i < size_init)
 		{
 			if (a->pile[0] <= pivot)
-				ft_pb(a, b);
+			{
+				if (ft_pb(a, b) < 0)
+				{
+					printf("error pb\n");
+					return ;
+				}
+			}
 			else
 				ft_ra(a);
 			i++;
@@ -56,7 +62,7 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 	{
 		while (b->size > 0)
 			ft_pa(a, b);	
-
+		free(b->pile);
 		printf("\nA : ");
 		i = 0;
 		while (i < a->size)
@@ -66,7 +72,7 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 		while (i < b->size)
 			printf("%d ", b->pile[i++]);
 		printf("\n");
-
+		free(a->pile);
 		return ;
 	}
 		printf("\nA : ");
