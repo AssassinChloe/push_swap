@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_quick_sort(t_pile *a, t_pile *b)
+/*void	ft_quick_sort(t_pile *a, t_pile *b)
 {
 	int	pivot;
 	int	size_init;
@@ -83,7 +83,7 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 		while (i < b->size)
 			printf("%d ", b->pile[i++]);
 		printf("\n");
-*/
+
 		free(a->pile);
 		return ;
 	}
@@ -96,9 +96,9 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 	while (i < b->size)
 		printf("%d ", b->pile[i++]);
 	printf("\n");
-*/
+
 	ft_quick_sort(a, b);
-}
+}*/
 
 void	ft_sort_3(t_pile *a)
 {
@@ -151,6 +151,6 @@ void	ft_sort(t_pile *a)
 	//    else if (a->size_max > 3 && a->size_max <= 5)
 	//       ft_sort_5(a);
 	else
-		ft_quick_sort(a, &b);
+		init_quick_sort(a, &b);
 	return ;
 }
