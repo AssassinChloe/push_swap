@@ -12,12 +12,12 @@
 
 #include "push_swap.h"
 
-int	ft_issmallest(t_pile *the, int pivot)
+int	ft_issmallest(t_pile *the, int size, int pivot)
 {
 	int i;
 
 	i = 0;
-	while (i < the->size)
+	while (i < size)
 	{
 		if (pivot > the->pile[i])
 			return (0);
@@ -26,12 +26,12 @@ int	ft_issmallest(t_pile *the, int pivot)
 	return (1);
 }
 
-int	ft_isbigest(t_pile *the, int pivot)
+int	ft_isbigest(t_pile *the, int size, int pivot)
 {
 	int i;
 
 	i = 0;
-	while (i < the->size)
+	while (i < size)
 	{
 		if (pivot < the->pile[i])
 			return (0);
