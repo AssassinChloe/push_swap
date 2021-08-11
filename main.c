@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:47 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/06 17:11:59 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/11 22:26:25 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int ac, char **av)
 	j = 0;
 	if (ac < 3)
 	{
-		printf("Error\n");
+		printf("Error nb argument\n");
 		return (0);
 	}
 	else
@@ -52,7 +52,7 @@ int	main(int ac, char **av)
 				a.pile[j] = ft_atoll(av[i]);
 				if (a.pile[j] < INT_MIN || a.pile[j] > INT_MAX)
 				{
-					printf("Error\n");
+					printf("Error overflow\n");
 					return (0);
 				}
 				j++;
@@ -60,7 +60,7 @@ int	main(int ac, char **av)
 			}
 			else
 			{
-				printf("Error\n");
+				printf("Error not nb\n");
 				return (0);
 			}
 		}
@@ -69,7 +69,7 @@ int	main(int ac, char **av)
 	}
 	if (ft_checkdouble(&a) == 1)
 	{
-		printf("Error\n");
+		printf("Error double\n");
 		return (0);
 	}
 	if (ft_checkifsorted(&a) == 1)
