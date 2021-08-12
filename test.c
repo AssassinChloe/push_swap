@@ -1,5 +1,36 @@
 #include "push_swap.h"
 
+void ft_newsort5(t_pile *a, t_pile *b)
+{
+    int i;
+
+    i = 0;
+    while (ft_checkifsorted(a) == 0)
+    {
+        if (a->size > 3)
+            ft_sort3sub_a(a);
+        else
+        {
+            ft_sort_3(a);
+            while (a->pile[a->size - 1] < a->pile[2])
+                ft_rra(a);
+        }
+        if (ft_checkifsorted(a) == 0)
+            ft_pb(a, b);
+    }
+    while (b->size > 0)
+    {
+        ft_pa(a, b);
+        if (ft_checkifsorted(a) == 0)
+            ft_sort3sub_a(a);
+    }
+    i = 0;
+    while (i < a->size)
+    {
+        printf("%d ", a->pile[i++]);
+    }
+}
+
 void init_quick_sort(t_pile *a, t_pile *b)
 {
 	int i;

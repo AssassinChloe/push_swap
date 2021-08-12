@@ -172,7 +172,7 @@ void	ft_sort(t_pile *a)
 	else if (a->size_max == 3)
 		ft_sort_3(a);
 	else if (a->size_max > 3 && a->size_max <= 5)
-		ft_sort_5(a, &b);
+		ft_newsort5(a, &b);
 	else
 		init_quick_sort(a, &b);
 	return ;

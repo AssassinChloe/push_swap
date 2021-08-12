@@ -56,4 +56,5 @@ int			ft_checkdouble(t_pile *a);
 void		init_quick_sort(t_pile *a, t_pile *b);
 void	ft_sort3sub_b(t_pile *b);
 void	ft_sort3sub_a(t_pile *a);
+void ft_newsort5(t_pile *a, t_pile *b);
 #endif
