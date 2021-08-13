@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:24:28 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/11 23:42:46 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/13 00:15:43 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct s_pile
 {
 	int	*pile;
 	int	size;
+	int	*sub;
+	int	i;
 	int	size_max;
 }	t_pile;
 
@@ -45,7 +47,7 @@ void		ft_rr(t_pile *a, t_pile *b);
 void		ft_rra(t_pile *a);
 void		ft_rrb(t_pile *b);
 void		ft_rrr(t_pile *a, t_pile *b);
-void		ft_quick_sort(t_pile *a, t_pile *b, int *sub_a, int *sub_b, int *nb_a, int *nb_b);
+void		ft_quick_sort(t_pile *a, t_pile *b);
 int			ft_addonetop(t_pile *the, int add);
 int			ft_removeonetop(t_pile *the);
 int			ft_freepile(t_pile *the);
@@ -57,4 +59,6 @@ void		init_quick_sort(t_pile *a, t_pile *b);
 void	ft_sort3sub_b(t_pile *b);
 void	ft_sort3sub_a(t_pile *a);
 void ft_newsort5(t_pile *a, t_pile *b);
+void	ft_sort_3b(t_pile *a);
+void	ft_sort5_b(t_pile *a, t_pile *b);
 #endif

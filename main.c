@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:47 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/11 22:26:25 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/13 01:35:50 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ int	main(int ac, char **av)
 				return (0);
 			}
 		}
-		a.size_max = j;
 		a.size = j;
+		a.i = 0;
+		a.sub = malloc(sizeof(int) * (a.size * 2));
+		a.sub[a.i] = a.size;
 	}
 	if (ft_checkdouble(&a) == 1)
 	{

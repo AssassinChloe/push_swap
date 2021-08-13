@@ -1,51 +1,121 @@
 #include "push_swap.h"
 
+void ft_sort5_b(t_pile *a, t_pile *b)
+{
+	int i;
+	int pivot;
+	int rotation;
+
+	rotation = 0;
+	if (b->sub[b->i] == 4)
+	{
+		i = 1;
+		while (i < 4 && ft_isbigest(b, b->sub[b->i], b->pile[b->sub[b->i - i]]) == 0)
+			i++;
+	}
+	else
+	{
+		i = 1;
+		while (i < 3 && (ft_isbigest(b, b->sub[b->i], b->pile[b->sub[b->i] - i]) == 1 || ft_issmallest(b, b->sub[b->i], b->pile[b->sub[b->i] - i]) == 1))
+		i++;
+	}
+	pivot = b->pile[b->sub[b->i] - i];
+	while (b->sub[b->i] > 3)
+	{
+		if (b->pile[0] >= pivot)
+		{
+			ft_pa(a, b);
+			b->sub[b->i]--;
+			a->sub[a->i]++;
+		}
+		else
+		{
+			if (b->sub[b->i] > 1)
+			{
+				ft_rb(b);
+				rotation++;
+			}
+		}
+	}
+	while (b->i > 0 && rotation > 0)
+	{
+		ft_rrb(b);
+		rotation--;
+	}
+	ft_sort3sub_a(a);
+	ft_sort3sub_b(b);
+	while (a->sub[a->i] > 0)
+	{
+		ft_pb(a, b);
+		b->sub[b->i]++;
+		a->sub[a->i]--;
+	}
+}
+
 void ft_newsort5(t_pile *a, t_pile *b)
 {
-    int i;
-
-    i = 0;
-    while (ft_checkifsorted(a) == 0)
-    {
-        if (a->size > 3)
-            ft_sort3sub_a(a);
-        else
-        {
-            ft_sort_3(a);
-            while (a->pile[a->size - 1] < a->pile[2])
-                ft_rra(a);
-        }
-        if (ft_checkifsorted(a) == 0)
-            ft_pb(a, b);
-    }
-    while (b->size > 0)
-    {
-        ft_pa(a, b);
-        if (ft_checkifsorted(a) == 0)
-            ft_sort3sub_a(a);
-    }
-    i = 0;
-    while (i < a->size)
-    {
-        printf("%d ", a->pile[i++]);
-    }
+	int i;
+	int pivot;
+	int rotation;
+	
+	i = 0;
+	rotation = 0;
+	if (a->sub[a->i] == 4)
+	{
+		i = 1;
+		while (ft_issmallest(a, a->sub[a->i], a->pile[a->sub[a->i] - i]) == 0)
+			i++;
+	}
+	else
+	{
+		i = 1;
+		while (ft_isbigest(a, a->sub[a->i], a->pile[a->sub[a->i] - i]) == 1 || ft_issmallest(a, a->sub[a->i], a->pile[a->sub[a->i] - i]) == 1)
+		i++;
+	}
+	pivot = a->pile[a->sub[a->i] - i];
+	while (a->sub[a->i] > 3)
+	{
+		if (a->pile[0] <= pivot)
+		{
+			ft_pb(a, b);
+			b->sub[b->i]++;
+			a->sub[a->i]--;
+		}
+		else
+		{
+			if (a->sub[a->i] > 1)
+			{
+				ft_ra(a);
+				rotation++;
+			}
+		}
+	}
+	while (a->i > 0 && rotation > 0)
+	{
+		ft_rra(a);
+		rotation--;
+	}
+	ft_sort3sub_a(a);
+	ft_sort3sub_b(b);
+	while (b->sub[b->i] > 0)
+	{
+		ft_pa(a, b);
+		b->sub[b->i]--;
+		a->sub[a->i]++;
+	}
 }
 
 void init_quick_sort(t_pile *a, t_pile *b)
 {
-	int i;
-	int j;
-	int *sub_a;
-	int *sub_b;
 	int pivot;
-
-	sub_a = malloc(sizeof(int) * (a->size_max));
-	sub_b = malloc(sizeof(int) * (a->size_max));
+	int i;
 
 	i = 0;
 	pivot = a->pile[(a->size - 1)];
-	sub_a[0] = a->size;
-	while (i < sub_a[0])
+	if (ft_isbigest(a, a->size, pivot) == 1)
+		pivot = a->pile[a->size - 2];
+	a->sub[0] = a->size;
+	while (i < a->sub[0])
 	{
 		if (a->pile[0] <= pivot)
 		{
@@ -59,29 +129,29 @@ void init_quick_sort(t_pile *a, t_pile *b)
 			ft_ra(a);
 		i++;
 	}
-	sub_a[0] = a->size;
-	sub_b[0] = b->size;
-	i = 1;
-	j = 0;
-	sub_a[1] = 0;
-	ft_quick_sort(a, b, sub_a, sub_b, &i, &j);
+	a->sub[0] = a->size;
+	b->sub[0] = b->size;
+	a->sub[1] = 0;
+	a->i = 1;
+	b->i = 0;
+	ft_quick_sort(a, b);
 }
 
-void	ft_quick_sort(t_pile *a, t_pile *b, int *sub_a, int *sub_b, int *nb_a, int *nb_b)
+void	ft_quick_sort(t_pile *a, t_pile *b)
 {
 	int size_init;
 	int i;
 	int pivot;
 	int rotation;
 
-	while (sub_b[*nb_b] > 3 && ft_checkifreversesorted(b) == 0)
+	while (b->sub[b->i] > 5 && ft_checkifreversesorted(b) == 0)
 	{
 		i = 0;
 		rotation = 0;
-		pivot = b->pile[(sub_b[*nb_b] - 1)];
-		if (ft_issmallest(b, sub_b[*nb_b], pivot) == 1)
-			pivot = b->pile[sub_b[*nb_b] - 2];
-		size_init = sub_b[*nb_b];
+		pivot = b->pile[(b->sub[b->i] - 1)];
+		if (ft_issmallest(b, b->sub[b->i], pivot) == 1)
+			pivot = b->pile[b->sub[b->i] - 2];
+		size_init = b->sub[b->i];
 		while (i < size_init)
 		{
 			if (b->pile[0] >= pivot)
@@ -91,12 +161,12 @@ void	ft_quick_sort(t_pile *a, t_pile *b, int *sub_a, int *sub_b, int *nb_a, int 
 					printf("error pa\n");
 					return ;
 				}
-				sub_a[*nb_a]++;
-				sub_b[*nb_b]--;
+				a->sub[a->i]++;
+				b->sub[b->i]--;
 			}
 			else
 			{
-				if (sub_b[*nb_b] > 1)
+				if (b->sub[b->i] > 1)
 				{
 					ft_rb(b);
 					rotation++;
@@ -104,50 +174,54 @@ void	ft_quick_sort(t_pile *a, t_pile *b, int *sub_a, int *sub_b, int *nb_a, int 
 			}
 			i++;
 		}
-		while (*nb_b > 0 && rotation > 0)
+		while (b->i > 0 && rotation > 0)
 		{
 			ft_rrb(b);
 			rotation--;
 		}
-		if (sub_b[*nb_b] > 3)
+		if (b->sub[b->i] > 5)
 		{
-			*nb_a = *nb_a + 1;
-			sub_a[*nb_a] = 0;
+			a->i++;
+			a->sub[a->i] = 0;
 		}
 	}
-	if (sub_b[*nb_b] <= 3)
+	if (b->sub[b->i] <= 5)
 	{
-		if (sub_b[*nb_b] == 2 && ft_checkifreversesorted(b) == 0)
+		if (b->sub[b->i] == 2 && ft_checkifreversesorted(b) == 0)
 			ft_sb(b);
-		else if (sub_b[*nb_b] == 3 && ft_checkifreversesorted(b) == 0)
+		else if (b->sub[b->i] == 3 && ft_checkifreversesorted(b) == 0)
 			ft_sort3sub_b(b);
-		*nb_b = *nb_b + 1;
-		sub_b[*nb_b] = 0;
-	}
-	if (sub_a[*nb_a] <= 3)
+		else if(b->sub[b->i] > 3 && ft_checkifreversesorted(b) == 0)
+			ft_sort5_b(a, b);
+		b->i++;
+		b->sub[b->i] = 0;
+	}	
+	if (a->sub[a->i] <= 5)
 	{
-		if (sub_a[*nb_a] == 2 && ft_checkifsorted(a) == 0)
+		if (a->sub[a->i] == 2 && ft_checkifsorted(a) == 0)
 			ft_sa(a);
-		else if (sub_a[*nb_a] == 3 && ft_checkifsorted(a) == 0)
+		else if (a->sub[a->i] == 3 && ft_checkifsorted(a) == 0)
 			ft_sort3sub_a(a);
-		while (sub_a[*nb_a] > 0)
+		else if(a->sub[a->i] > 3 && ft_checkifsorted(a) == 0)
+			ft_newsort5(a, b);
+		while (a->sub[a->i] > 0)
 		{
 			ft_pb(a, b);
-			sub_b[*nb_b]++;
-			sub_a[*nb_a]--;
+			b->sub[b->i]++;
+			a->sub[a->i]--;
 		}
-		*nb_a = *nb_a - 1;
-		if (*nb_a < 0)
-			*nb_a = 0;
+		a->i--;
+		if (a->i < 0)
+		a->i = 0;
 	}
 	else
 	{
 		i = 0;
-		size_init = sub_a[*nb_a];
+		size_init = a->sub[a->i];
 		rotation = 0;
-		pivot = a->pile[(sub_a[*nb_a] - 1)];
-		if (ft_isbigest(a, sub_a[*nb_a], pivot) == 1)
-			pivot = a->pile[sub_a[*nb_a] - 2];
+		pivot = a->pile[(a->sub[a->i] - 1)];
+		if (ft_isbigest(a, a->sub[a->i], pivot) == 1)
+			pivot = a->pile[a->sub[a->i] - 2];
 		while (i < size_init)
 		{
 			if (a->pile[0] <= pivot)
@@ -157,12 +231,12 @@ void	ft_quick_sort(t_pile *a, t_pile *b, int *sub_a, int *sub_b, int *nb_a, int 
 					printf("error pb\n");
 					return ;
 				}
-				sub_b[*nb_b]++;
-				sub_a[*nb_a]--;
+				b->sub[b->i]++;
+				a->sub[a->i]--;
 			}
 			else
 			{
-				if (sub_a[*nb_a] > 1)
+				if (a->sub[a->i] > 1)
 				{
 					ft_ra(a);
 					rotation++;
@@ -170,43 +244,27 @@ void	ft_quick_sort(t_pile *a, t_pile *b, int *sub_a, int *sub_b, int *nb_a, int 
 			}
 			i++;
 		}
-		while (*nb_a > 0 && rotation > 0)
+		while (a->i > 0 && rotation > 0)
 		{
 			ft_rra(a);
 			rotation--;
 		}
-	}
-	if (ft_checkifsorted(a) == 1 && ft_checkifreversesorted(b) == 1)
-	{
-		while (b->size > 0)
-			ft_pa(a, b);	
-/*		
-		printf("\nA : ");
+					}
+		if (ft_checkifsorted(a) == 1 && ft_checkifreversesorted(b) == 1)
+		{
+			while (b->size > 0)
+				ft_pa(a, b);	
+			return ;
+		}
+		/*
 		i = 0;
 		while (i < a->size)
-			printf("%d ", a->pile[i++]);
+			printf("%d", a->pile[i++]);
+		printf("\n");
 		i = 0;
-		printf("\nB : ");
 		while (i < b->size)
 			printf("%d ", b->pile[i++]);
 		printf("\n");
-*/
-		free(b->pile);
-		free(a->pile);
-		free(sub_a);
-		free(sub_b);
-		return ;
-	}
-/*	
-	printf("\nA : %d - ", *nb_a);
-	i = 0;
-	while (i < a->size)
-		printf("%d ", a->pile[i++]);
-	i = 0;
-	printf("\nB : %d - ", *nb_b);
-	while (i < b->size)
-		printf("%d ", b->pile[i++]);
-	printf("\n");
-*/	
-	ft_quick_sort(a, b, sub_a, sub_b, nb_a, nb_b);
+		*/
+		ft_quick_sort(a, b);
 }
