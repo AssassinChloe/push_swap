@@ -23,7 +23,7 @@ void ft_sort5_b(t_pile *a, t_pile *b)
 	}
 	pivot = b->pile[b->sub[b->i] - i];
 	i = 0;
-	while (i < size || a->sub[a->i])
+	while (i < size && a->sub[a->i] < 3)
 	{
 		if (b->pile[0] >= pivot)
 		{
@@ -80,7 +80,7 @@ void ft_newsort5(t_pile *a, t_pile *b)
 	}
 	pivot = a->pile[a->sub[a->i] - i];
 	i = 0;
-	while (i < size || b->sub[b->i] < 3)
+	while (i < size && b->sub[b->i] < 3)
 	{
 		if (a->pile[0] <= pivot)
 		{
@@ -197,7 +197,7 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 		if (a->sub[a->i] == 2 && ft_checkifsorted(a) == 0)
 			ft_sa(a);
 		else if (a->sub[a->i] == 3 && ft_checkifsorted(a) == 0)
-			ft_sort3sub_b(b);
+			ft_sort3sub_a(a);
 		else if(a->sub[a->i] > 3 && ft_checkifsorted(a) == 0)
 			ft_newsort5(a, b);
 		a->i++;
@@ -208,7 +208,7 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 		if (b->sub[b->i] == 2 && ft_checkifreversesorted(b) == 0)
 			ft_sb(b);
 		else if (b->sub[b->i] == 3 && ft_checkifreversesorted(b) == 0)
-			ft_sort3sub_b(a);
+			ft_sort3sub_b(b);
 		else if(b->sub[b->i] > 3 && ft_checkifreversesorted(b) == 0)
 			ft_sort5_b(a, b);
 		while (b->sub[b->i] > 0)
@@ -224,14 +224,14 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 	else
 	{
 		i = 0;
-		size_init = a->sub[b->i];
+		size_init = b->sub[b->i];
 		rotation = 0;
 		pivot = b->pile[(b->sub[b->i] - 1)];
 		if (ft_issmallest(b, b->sub[b->i], pivot) == 1)
 			pivot = b->pile[b->sub[b->i] - 2];
 		while (i < size_init)
 		{
-			if (b->pile[0] <= pivot)
+			if (b->pile[0] >= pivot)
 			{
 				if (ft_pa(a, b) < 0)
 				{
@@ -263,7 +263,7 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 			ft_pa(a, b);	
 		return ;
 	}
-		/*
+/*
 		i = 0;
 		while (i < a->size)
 			printf("%d", a->pile[i++]);
@@ -272,6 +272,6 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 		while (i < b->size)
 			printf("%d ", b->pile[i++]);
 		printf("\n");
-		*/
+*/
 	ft_quick_sort(a, b);
 }

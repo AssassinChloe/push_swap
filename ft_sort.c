@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:08 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/13 01:44:40 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/14 17:44:12 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	ft_sort_3(t_pile *a)
 {
+	if (a->size != 3 && ft_checkifsorted(a) == 0)
+	{
+		ft_sa(a);
+		return ;
+	}
 	if (a->pile[0] > a->pile[1] && a->pile[0] < a->pile[2]
 			&& a->pile[1] < a->pile[2])
 		ft_sa(a);
@@ -42,9 +47,9 @@ void	ft_sort(t_pile *a)
 {
 	t_pile	b;
 
-	b.pile = NULL;
+	b.pile = malloc(sizeof(int) * a->size);
 	b.size = 0;
-	b.sub = malloc(sizeof(int) * (a->size * 2));
+	b.sub = malloc(sizeof(int) * a->size * 2);
 	b.i = 0;
 	if (a->size == 2)
 	{
@@ -59,9 +64,11 @@ void	ft_sort(t_pile *a)
 		init_quick_sort(a, &b);
 	if (a->pile)
 		free(a->pile);
-	free(a->sub);
+	if (a->sub)
+		free(a->sub);
+	if (b.sub)
+		free(b.sub);
 	if (b.pile)
 		free(b.pile);
-	free(b.sub);
 	return ;
 }
