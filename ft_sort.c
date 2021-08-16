@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:08 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/14 17:44:12 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/16 17:09:56 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ void	ft_sort(t_pile *a)
 	b.sub = malloc(sizeof(int) * a->size * 2);
 	b.i = 0;
 	if (a->size == 2)
-	{
 		ft_sa(a);
-		return ;
-	}
 	else if (a->size == 3)
 		ft_sort_3(a);
 	else if (a->size > 3 && a->size <= 5)
