@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:15:40 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/17 15:14:27 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/17 16:25:01 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	ft_findmedstack(t_pile *the)
 	int	i;
 	int	j;
 
-	i = 0;
 	if ((the->sub[the->i] % 2) == 0)
 		j = (the->sub[the->i] / 2) - 1;
 	else
@@ -40,7 +39,7 @@ int	ft_findmedstack(t_pile *the)
 				the->ignore[(i - 1)] = 1;
 			i++;
 		}
-		j++;
+		j--;
 	}
 	i = 0;
 	while (the->ignore[i] == 1)
