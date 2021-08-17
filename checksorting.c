@@ -1,47 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quick_sort.c                                       :+:      :+:    :+:   */
+/*   checksorting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/06 15:48:31 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/17 14:19:53 by cassassi         ###   ########.fr       */
+/*   Created: 2021/08/17 13:16:40 by cassassi          #+#    #+#             */
+/*   Updated: 2021/08/17 15:13:20 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_issmallest(t_pile *the, int pivot)
+int	ft_checkifsorted(t_pile *a)
 {
-	int i;
+	int	i;
+	int	j;
 
 	i = 0;
-	while (i < the->sub[the->i])
+	j = 1;
+	while (j < a->sub[a->i])
 	{
-		if (the->ignore[i] == 1)
-			i++;
-		else if (pivot > the->pile[i])
+		if (a->pile[i] > a->pile[j])
 			return (0);
-		else
-			i++;
+		i++;
+		j++;
 	}
 	return (1);
 }
 
-int	ft_isbigest(t_pile *the, int pivot)
+int	ft_checkifreversesorted(t_pile *b)
 {
-	int i;
+	int	i;
+	int	j;
 
 	i = 0;
-	while (i < the->sub[the->i])
+	j = 1;
+	while (j < b->sub[b->i])
 	{
-		if (the->ignore[i] == 1)
-			i++;
-		else if (pivot < the->pile[i])
+		if (b->pile[i] < b->pile[j])
 			return (0);
-		else
-			i++;
+		i++;
+		j++;
 	}
 	return (1);
 }

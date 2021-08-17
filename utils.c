@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:25:15 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/14 17:33:22 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/17 15:08:10 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	ft_addonetop(t_pile *the, int add)
 			return (-1);
 		ft_pilecopy(the, &tab);
 		free(the->pile);
-		the->pile = NULL;
 	}
 	the->size++;
 	the->pile = malloc(sizeof(int) * the->size);
@@ -55,8 +54,7 @@ int	ft_addonetop(t_pile *the, int add)
 
 int	ft_freepile(t_pile *the)
 {
-	if (the->pile)
-		free(the->pile);
+	free(the->pile);
 	the->pile = NULL;
 	the->size = 0;
 	return (0);
@@ -68,7 +66,9 @@ int	ft_removeonetop(t_pile *the)
 	int	i;
 	int	j;
 
-	if (the->size <= 1)
+	if (the->size == 0)
+		return (0);
+	if (the->size == 1)
 		return (ft_freepile(the));
 	i = 0;
 	j = 1;
@@ -76,9 +76,7 @@ int	ft_removeonetop(t_pile *the)
 	if (!tab)
 		return (-1);
 	ft_pilecopy(the, &tab);
-	if (the->pile)
-		free(the->pile);
-	the->pile = NULL;
+	free(the->pile);
 	the->size--;
 	the->pile = malloc(sizeof(int) * (the->size));
 	if (!the->pile)

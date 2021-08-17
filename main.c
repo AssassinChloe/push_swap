@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:47 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/13 01:35:50 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/17 15:04:37 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int ac, char **av)
 		}
 		a.size = j;
 		a.i = 0;
-		a.sub = malloc(sizeof(int) * (a.size * 2));
+		a.sub = malloc(sizeof(int) * a.size);
 		a.sub[a.i] = a.size;
 	}
 	if (ft_checkdouble(&a) == 1)
@@ -78,6 +78,22 @@ int	main(int ac, char **av)
 		return (0);
 	ft_sort(&a);
 	return (0);
+}
+
+void	ft_free(t_pile *a, t_pile *b)
+{
+	if (a->pile)
+		free(a->pile);
+	if (a->sub)
+		free(a->sub);
+	if (b->sub)
+		free(b->sub);
+	if (b->pile)
+		free(b->pile);
+	if (a->ignore)
+		free(a->ignore);
+	if (b->ignore)
+		free(b->ignore);
 }
 
 int	ft_checkdouble(t_pile *a)
@@ -98,38 +114,4 @@ int	ft_checkdouble(t_pile *a)
 		i++;
 	}
 	return (0);
-}
-
-int	ft_checkifsorted(t_pile *the)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 1;
-	while (j < the->size)
-	{
-		if (the->pile[i] > the->pile[j])
-			return (0);
-		i++;
-		j++;
-	}
-	return (1);
-}
-
-int	ft_checkifreversesorted(t_pile *the)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 1;
-	while (j < the->size)
-	{
-		if (the->pile[i] < the->pile[j])
-			return (0);
-		i++;
-		j++;
-	}
-	return (1);
 }
