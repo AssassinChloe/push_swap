@@ -9,6 +9,7 @@ void ft_sort5_b(t_pile *a, t_pile *b)
 
 	rotation = 0;
 	size = b->sub[b->i];
+	/*
 	if (b->sub[b->i] == 4)
 	{
 		i = 1;
@@ -18,6 +19,8 @@ void ft_sort5_b(t_pile *a, t_pile *b)
 	}
 	else
 		pivot = ft_findmed(b);
+		*/
+	pivot = ft_findmedstack(b);
 	i = 0;
 	while (i < size)
 	{
@@ -50,15 +53,6 @@ void ft_sort5_b(t_pile *a, t_pile *b)
 		ft_sort_3b(b);
 	else
 		ft_sort3sub_b(b);
-		i = 0;
-		printf("5b A : ");
-		while (i < a->size)
-			printf("%d ", a->pile[i++]);
-		printf("\n5b B : ");
-		i = 0;
-		while (i < b->size)
-			printf("%d ", b->pile[i++]);
-		printf("\n");
 	/*while (a->sub[a->i] > 0)
 	{
 		ft_pb(a, b);
@@ -87,8 +81,10 @@ void ft_newsort5(t_pile *a, t_pile *b)
 		pivot = a->pile[a->sub[a->i] - i];
 		printf("%d\n", pivot);
 	}
-	else*/
+	else
 		pivot = ft_findmed(a);
+		*/
+	pivot = ft_findmedstack(a);
 	i = 0;
 	while (i < size)
 	{
@@ -129,15 +125,6 @@ void ft_newsort5(t_pile *a, t_pile *b)
 		a->sub[a->i]++;
 	}
 		b->i--;
-		i = 0;
-		printf("5a A : ");
-		while (i < a->size)
-			printf("%d ", a->pile[i++]);
-		printf("\n5a B : ");
-		i = 0;
-		while (i < b->size)
-			printf("%d ", b->pile[i++]);
-		printf("\n");
 }
 
 void init_quick_sort(t_pile *a, t_pile *b)
@@ -170,15 +157,6 @@ void init_quick_sort(t_pile *a, t_pile *b)
 	b->sub[0] = b->size;
 	b->i = 1;
 	b->sub[1] = 0;
-		i = 0;
-		printf("init A : ");
-		while (i < a->size)
-			printf("%d ", a->pile[i++]);
-		printf("\ninit B : ");
-		i = 0;
-		while (i < b->size)
-			printf("%d ", b->pile[i++]);
-		printf("\n");
 	ft_quick_sort(a, b);
 }
 
@@ -221,15 +199,6 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 			}
 			i++;
 		}
-		i = 0;
-		printf("a > 5 A : ");
-		while (i < a->size)
-			printf("%d ", a->pile[i++]);
-		printf("\na > 5 B : ");
-		i = 0;
-		while (i < b->size)
-			printf("%d ", b->pile[i++]);
-		printf("\n");
 		while (a->i > 0 && rotation > 0)
 		{
 			ft_rra(a);
@@ -301,15 +270,6 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 			}
 			i++;
 		}
-		i = 0;
-		printf("b > 5 A : ");
-		while (i < a->size)
-			printf("%d ", a->pile[i++]);
-		printf("\nb > 5 B : ");
-		i = 0;
-		while (i < b->size)
-			printf("%d ", b->pile[i++]);
-		printf("\n");
 		while (b->i > 0 && rotation > 0)
 		{
 			ft_rrb(b);
@@ -320,18 +280,9 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 	{
 		while (b->size > 0)
 			ft_pa(a, b);	
-		i = 0;
-		printf("END A : ");
-		while (i < a->size)
-			printf("%d ", a->pile[i++]);
-		printf("\nEND B : ");
-		i = 0;
-		while (i < b->size)
-			printf("%d ", b->pile[i++]);
-		printf("\n");
 		return ;
 	}
-	
+/*	
 		i = 0;
 		printf("A : ");
 		while (i < a->size)
@@ -341,6 +292,6 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 		while (i < b->size)
 			printf("%d ", b->pile[i++]);
 		printf("\n");
-		printf("ai%d as%d ass%d \n", a->i, a->size, a->sub[a->i]);
+*/
 		ft_quick_sort(a, b);
 }

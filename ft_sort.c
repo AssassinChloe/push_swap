@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:08 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/17 16:24:26 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/18 14:27:26 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,16 @@ void	ft_sort(t_pile *a)
 		ft_newsort5(a, &b);
 	else
 		init_quick_sort(a, &b);
+	int i = 0;
+	printf("A : ");
+	while (i < a->size)
+		printf("%d ", a->pile[i++]);
+	printf("\nB : ");
+	i = 0;
+	while (i < b.size)
+		printf("%d ", b.pile[i++]);
+	printf("\n");
+
 	ft_free(a, &b);
 	return ;
 }

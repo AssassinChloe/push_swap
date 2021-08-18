@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:15:40 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/17 16:25:01 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/18 14:36:41 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,23 @@ int	ft_findmedstack(t_pile *the)
 {
 	int	i;
 	int	j;
-
+	int	count;
+	
+	count = the->sub[the->i];
 	if ((the->sub[the->i] % 2) == 0)
 		j = (the->sub[the->i] / 2) - 1;
 	else
 		j = the->sub[the->i] / 2;
-	i = 1;
-	while (j > 1)
+	while (j > 0)
 	{
-		while (i <= the->sub[the->i])
+		i = 1;
+		while (i <= the->sub[the->i] && count > 2)
 		{
-			if (ft_issmallest(the, the->pile[the->sub[the->i] - i]) == 1 || ft_isbigest(the, the->pile[the->sub[the->i] - i]) == 1)
+			if (the->ignore[i - 1] == 0 && (ft_issmallest(the, the->pile[the->sub[the->i] - i]) == 1 || ft_isbigest(the, the->pile[the->sub[the->i] - i]) == 1))
+			{
 				the->ignore[(i - 1)] = 1;
+				count --;
+			}
 			i++;
 		}
 		j--;
@@ -45,6 +50,7 @@ int	ft_findmedstack(t_pile *the)
 	while (the->ignore[i] == 1)
 		i++;
 	ft_ignorezero(the);
+	printf("pivot %d\n", the->pile[the->sub[the->i] - (i + 1)]);
 	return (the->pile[the->sub[the->i] - (i + 1)]);
 }
 
