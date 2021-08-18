@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:15:40 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/18 14:36:41 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/18 18:21:20 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,13 @@ int	ft_findmedstack(t_pile *the)
 	int	i;
 	int	j;
 	int	count;
-	
+	int	big;
+	int	small;
+
+	printf("sub %d, i %d\n", the->sub[the->i], the->i);	
 	count = the->sub[the->i];
+	big = (the->sub[the->i] / 2) - 1;
+	small = (the->sub[the->i] / 2) - 1;
 	if ((the->sub[the->i] % 2) == 0)
 		j = (the->sub[the->i] / 2) - 1;
 	else
@@ -35,12 +40,19 @@ int	ft_findmedstack(t_pile *the)
 	while (j > 0)
 	{
 		i = 1;
-		while (i <= the->sub[the->i] && count > 2)
+		while (i <= the->sub[the->i] && count > 1)
 		{
-			if (the->ignore[i - 1] == 0 && (ft_issmallest(the, the->pile[the->sub[the->i] - i]) == 1 || ft_isbigest(the, the->pile[the->sub[the->i] - i]) == 1))
+			if (the->ignore[i - 1] == 0 && small >= 0 && ft_issmallest(the, the->pile[the->sub[the->i] - i]) == 1) 
 			{
 				the->ignore[(i - 1)] = 1;
-				count --;
+				count--;
+				small--;
+			}
+			if (the->ignore[i - 1] == 0 && big >= 0 && ft_isbigest(the, the->pile[the->sub[the->i] - i]) == 1)
+			{
+				the->ignore[(i - 1)] = 1;
+				count--;
+				big--;
 			}
 			i++;
 		}
