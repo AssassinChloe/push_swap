@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 15:16:41 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/19 17:00:46 by cassassi         ###   ########.fr       */
+/*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
+/*   Updated: 2021/08/19 17:18:45 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_free(t_pile *a, t_pile *b)
+int	ft_buildpile(t_pile *a, int size, char **av)
 {
-	ft_endfree(a);
-	ft_endfree(b);
+	int	i;
+
+	i = 1;
+	while (i < size)
+	{
+		if (ft_isnb(av[i]) > 0)
+		{
+			a->pile[a->size] = ft_atoll(av[i]);
+			if (a->pile[a->size] < INT_MIN || a->pile[a->size] > INT_MAX)
+			{
+				printf("Error overflow\n");
+				return (-1);
+			}
+			a->size++;
+			i++;
+		}
+		else
+		{
+			printf("Error not nb\n");
+			return (-1);
+		}
+
+	}
 	return (0);
 }
-
-void	ft_endfree(t_pile *the)
-{
-	if (the->pile != NULL)
-	{
-		free(the->pile);
-		the->pile = NULL;
-	}
-	if (the->sub != NULL)
-	{
-		free(the->sub);
-		the->sub = NULL;
-	}
-	if (the->ignore != NULL)
-	{
-		free(the->ignore);
-		the->ignore = NULL;
-	}
-}
-
