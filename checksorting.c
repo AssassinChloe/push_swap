@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 13:16:40 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/17 15:13:20 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/19 12:23:18 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,3 +45,38 @@ int	ft_checkifreversesorted(t_pile *b)
 	}
 	return (1);
 }
+
+int	ft_checkifallsorted(t_pile *a)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 1;
+	while (j < a->size)
+	{
+		if (a->pile[i] > a->pile[j])
+			return (0);
+		i++;
+		j++;
+	}
+	return (1);
+}
+
+int	ft_checkifallreversesorted(t_pile *b)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 1;
+	while (j < b->size)
+	{
+		if (b->pile[i] < b->pile[j])
+			return (0);
+		i++;
+		j++;
+	}
+	return (1);
+}
+

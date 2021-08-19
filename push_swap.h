@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:24:28 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/17 15:05:00 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/19 12:24:52 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_pile
 long long	ft_atoll(const char *str);
 int			ft_isdigit(int c);
 int			ft_checkifsorted(t_pile *a);
+int			ft_checkifallsorted(t_pile *a);
 void		ft_sort(t_pile *a);
 void		ft_sort_3(t_pile *a);
 void		ft_sort_5(t_pile *a, t_pile *b);
@@ -53,6 +54,7 @@ int			ft_addonetop(t_pile *the, int add);
 int			ft_removeonetop(t_pile *the);
 int			ft_freepile(t_pile *the);
 int			ft_checkifreversesorted(t_pile *b);
+int			ft_checkifallreversesorted(t_pile *b);
 int			ft_issmallest(t_pile *the, int pivot);
 int			ft_isbigest(t_pile *the, int pivot);
 int			ft_checkdouble(t_pile *a);

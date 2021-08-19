@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:15:40 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/18 18:21:20 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/19 12:52:04 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_findmedstack(t_pile *the)
 	int	big;
 	int	small;
 
-	printf("sub %d, i %d\n", the->sub[the->i], the->i);	
+//	printf("sub %d, i %d\n", the->sub[the->i], the->i);	
 	count = the->sub[the->i];
 	big = (the->sub[the->i] / 2) - 1;
 	small = (the->sub[the->i] / 2) - 1;
@@ -62,41 +62,8 @@ int	ft_findmedstack(t_pile *the)
 	while (the->ignore[i] == 1)
 		i++;
 	ft_ignorezero(the);
-	printf("pivot %d\n", the->pile[the->sub[the->i] - (i + 1)]);
+//	printf("pivot %d\n", the->pile[the->sub[the->i] - (i + 1)]);
 	return (the->pile[the->sub[the->i] - (i + 1)]);
-}
-
-int	ft_findmed(t_pile *the)
-{
-	int	i;
-	int	ignore[5];
-	int	med[3];
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i < 5)
-		ignore[i++] = 0;
-	i = 1;
-	while (i <= 5)
-	{
-		if (ft_issmallest(the, the->pile[the->sub[the->i] - i]) == 1 || ft_isbigest(the, the->pile[the->sub[the->i] - i]) == 1)
-			ignore[(i - 1)] = 1;
-		i++;
-	}
-	i = 1;
-	while (i <= 5)
-	{
-		if (ignore[(i - 1)] == 0)
-			med[j++] = the->pile[the->sub[the->i] - i];
-		i++;
-	}
-	if ((med[0] > med[1] && med[0] < med[2]) || (med[0] < med[1] && med[0] > med[2]))
-		return (med[0]);
-	else if ((med[0] < med[1] && med[1] < med[2]) || (med[0] > med[1] && med[1] > med[2]))
-		return (med[1]);
-	else
-		return (med[2]);
 }
 
 int	ft_anypaleft(t_pile *b, int pivot)
