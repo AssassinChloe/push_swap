@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:24:28 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/19 12:24:52 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/19 15:19:41 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ long long	ft_atoll(const char *str);
 int			ft_isdigit(int c);
 int			ft_checkifsorted(t_pile *a);
 int			ft_checkifallsorted(t_pile *a);
-void		ft_sort(t_pile *a);
+void		ft_init(t_pile *a, t_pile *b);
+void		ft_sort(t_pile *a, t_pile *b);
 void		ft_sort_3(t_pile *a);
-void		ft_sort_5(t_pile *a, t_pile *b);
+void		ft_sort5_a(t_pile *a, t_pile *b);
 void		ft_swap_two(t_pile *the);
 void		ft_toptobot(t_pile *the);
 void		ft_bottotop(t_pile *the);
@@ -69,5 +70,6 @@ int	ft_anypbleft(t_pile *a, int pivot);
 int	ft_anypaleft(t_pile *b, int pivot);
 void	ft_ignorezero(t_pile *the);
 int	ft_findmedstack(t_pile *the);
+void	ft_endfree(t_pile *the);
 void	ft_free(t_pile *a, t_pile *b);
 #endif

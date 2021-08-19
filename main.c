@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:47 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/17 15:04:37 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/19 15:17:02 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	ft_isnb(char *str)
 int	main(int ac, char **av)
 {
 	int		i;
-	int		j;
 	t_pile	a;
+	t_pile	b;
 
 	i = 1;
-	j = 0;
+	a.size = 0;
 	if (ac < 3)
 	{
 		printf("Error nb argument\n");
@@ -49,51 +49,88 @@ int	main(int ac, char **av)
 		{
 			if (ft_isnb(av[i]) > 0)
 			{
-				a.pile[j] = ft_atoll(av[i]);
-				if (a.pile[j] < INT_MIN || a.pile[j] > INT_MAX)
+				a.pile[a.size] = ft_atoll(av[i]);
+				if (a.pile[a.size] < INT_MIN || a.pile[a.size] > INT_MAX)
 				{
 					printf("Error overflow\n");
+					free(a.pile);
 					return (0);
 				}
-				j++;
+				a.size++;
 				i++;
 			}
 			else
 			{
 				printf("Error not nb\n");
+				free(a.pile);
 				return (0);
 			}
 		}
-		a.size = j;
-		a.i = 0;
-		a.sub = malloc(sizeof(int) * a.size);
-		a.sub[a.i] = a.size;
+		if (ft_checkdouble(&a) == 1)
+		{
+			printf("Error double\n");
+			free(a.pile);
+			return (0);
+		}
+		if (ft_checkifallsorted(&a) == 1)
+		{
+			free(a.pile);
+			return (0);
+		}
 	}
-	if (ft_checkdouble(&a) == 1)
+	if (ft_init(&a, &b) < 0)
 	{
-		printf("Error double\n");
-		return (0);
+		printf("Error\n");
+		ft_free(&a, &b);
 	}
-	if (ft_checkifsorted(&a) == 1)
-		return (0);
-	ft_sort(&a);
+	ft_sort(&a, &b);
 	return (0);
 }
 
-void	ft_free(t_pile *a, t_pile *b)
+int	ft_init(t_pile *a, t_pile *b)
 {
-	if (a->pile)
-		free(a->pile);
-	if (a->sub)
-		free(a->sub);
-	if (b->sub)
-		free(b->sub);
-	if (b->pile)
-		free(b->pile);
-	if (a->ignore)
-		free(a->ignore);
-	if (b->ignore)
-		free(b->ignore);
+	a->i = 0;
+	a->sub = malloc(sizeof(int) * a->size);
+	if (!a->sub)
+		return (-1)
+	a->sub[a->i] = a->size;
+	b->pile = malloc(sizeof(int) * a->size);
+	if (!b->pile)
+		return (-1);
+	b->size = 0;
+	b->sub = malloc(sizeof(int) * a->size);
+	if (!b->sub)
+		return (-1);
+	b->i = 0;
+	b->sub[b->i] = 0;
+	a->ignore = malloc(sizeof(int) * a->size);
+	if (!a->ignore)
+		return (-1);
+	ft_ignorezero(a);
+	b->ignore = malloc(sizeof(int) * a->size);
+	if (!b->ignore)
+		return (-1);
+	ft_ignorezero(b);
+	return (0);
+}
+
+void	ft_endfree(t_pile *the)
+{
+	if (the->pile != NULL)
+	{
+		free(the->pile);
+		the->pile = NULL;
+	}
+	if (the->sub != NULL)
+	{
+		free(the->sub);
+		the->sub = NULL;
+	}
+	if (the->ignore != NULL)
+	{
+		free(the->ignore);
+		the->ignore = NULL;
+	}
 }
 
 int	ft_checkdouble(t_pile *a)

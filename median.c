@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:15:40 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/19 12:52:04 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/19 14:41:50 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	ft_findmedstack(t_pile *the)
 	int	big;
 	int	small;
 
-//	printf("sub %d, i %d\n", the->sub[the->i], the->i);	
 	count = the->sub[the->i];
 	big = (the->sub[the->i] / 2) - 1;
 	small = (the->sub[the->i] / 2) - 1;
+	ft_ignorezero(the);
 	if ((the->sub[the->i] % 2) == 0)
 		j = (the->sub[the->i] / 2) - 1;
 	else
@@ -62,8 +62,45 @@ int	ft_findmedstack(t_pile *the)
 	while (the->ignore[i] == 1)
 		i++;
 	ft_ignorezero(the);
-//	printf("pivot %d\n", the->pile[the->sub[the->i] - (i + 1)]);
 	return (the->pile[the->sub[the->i] - (i + 1)]);
+}
+
+int	ft_issmallest(t_pile *the, int pivot)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = the->sub[the->i] - 1;
+	while (i < the->sub[the->i])
+	{
+		if (the->ignore[i] == 1)
+			i++;
+		else if (pivot > the->pile[j - i])
+			return (0);
+		else
+			i++;
+	}
+	return (1);
+}
+
+int	ft_isbigest(t_pile *the, int pivot)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = the->sub[the->i] - 1;
+	while (i < the->sub[the->i])
+	{
+		if (the->ignore[i] == 1)
+			i++;
+		else if (pivot < the->pile[j - i])
+			return (0);
+		else
+			i++;
+	}
+	return (1);
 }
 
 int	ft_anypaleft(t_pile *b, int pivot)

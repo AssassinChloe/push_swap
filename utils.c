@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:25:15 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/17 15:08:10 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/19 14:51:05 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ int	ft_addonetop(t_pile *the, int add)
 		if (!tab)
 			return (-1);
 		ft_pilecopy(the, &tab);
-		free(the->pile);
 	}
+	free(the->pile);
+	the->pile = NULL;
 	the->size++;
 	the->pile = malloc(sizeof(int) * the->size);
 	if (!the->pile)
@@ -48,7 +49,10 @@ int	ft_addonetop(t_pile *the, int add)
 	while (the->size > 1 && i < the->size)
 		the->pile[i++] = tab[j++];
 	if (the->size > 1)
+	{
 		free(tab);
+		tab = NULL;
+	}
 	return (0);
 }
 
@@ -69,7 +73,10 @@ int	ft_removeonetop(t_pile *the)
 	if (the->size == 0)
 		return (0);
 	if (the->size == 1)
-		return (ft_freepile(the));
+	{
+		ft_freepile(the);
+		return (0);
+	}
 	i = 0;
 	j = 1;
 	tab = malloc(sizeof(int) * the->size);
@@ -77,6 +84,7 @@ int	ft_removeonetop(t_pile *the)
 		return (-1);
 	ft_pilecopy(the, &tab);
 	free(the->pile);
+	the->pile = NULL;
 	the->size--;
 	the->pile = malloc(sizeof(int) * (the->size));
 	if (!the->pile)
@@ -84,5 +92,6 @@ int	ft_removeonetop(t_pile *the)
 	while (i < the->size)
 		the->pile[i++] = tab[j++];
 	free(tab);
+	tab = NULL;
 	return (0);
 }
