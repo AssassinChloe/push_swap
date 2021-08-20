@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:16:41 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/19 17:00:46 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/20 13:15:15 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ void	ft_endfree(t_pile *the)
 		the->ignore = NULL;
 	}
 }
-

@@ -6,30 +6,46 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:15:40 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/19 14:41:50 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/20 14:44:22 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_ignorezero(t_pile *the)
+static void	ft_findmed(t_pile *the, int small, int big)
 {
-	int i;
+	int	i;
+	int	count;
 
-	i = 0;
-	while (i < the->size)
-		the->ignore[i++] = 0;
+	count = the->sub[the->i];
+	i = 1;
+	while (i <= the->sub[the->i] && count > 1)
+	{
+		if (the->ignore[i - 1] == 0 && small >= 0
+			&& ft_small(the, the->pile[the->sub[the->i] - i]) == 1)
+		{
+			the->ignore[(i - 1)] = 1;
+			count--;
+			small--;
+		}
+		if (the->ignore[i - 1] == 0 && big >= 0
+			&& ft_big(the, the->pile[the->sub[the->i] - i]) == 1)
+		{
+			the->ignore[(i - 1)] = 1;
+			count--;
+			big--;
+		}
+		i++;
+	}
 }
 
-int	ft_findmedstack(t_pile *the)
+void	ft_findmedstack(t_pile *the)
 {
 	int	i;
 	int	j;
-	int	count;
-	int	big;
 	int	small;
+	int	big;
 
-	count = the->sub[the->i];
 	big = (the->sub[the->i] / 2) - 1;
 	small = (the->sub[the->i] / 2) - 1;
 	ft_ignorezero(the);
@@ -39,36 +55,29 @@ int	ft_findmedstack(t_pile *the)
 		j = the->sub[the->i] / 2;
 	while (j > 0)
 	{
-		i = 1;
-		while (i <= the->sub[the->i] && count > 1)
-		{
-			if (the->ignore[i - 1] == 0 && small >= 0 && ft_issmallest(the, the->pile[the->sub[the->i] - i]) == 1) 
-			{
-				the->ignore[(i - 1)] = 1;
-				count--;
-				small--;
-			}
-			if (the->ignore[i - 1] == 0 && big >= 0 && ft_isbigest(the, the->pile[the->sub[the->i] - i]) == 1)
-			{
-				the->ignore[(i - 1)] = 1;
-				count--;
-				big--;
-			}
-			i++;
-		}
-		j--;
+		ft_findmed(the, small, big);
+		j++;
 	}
 	i = 0;
 	while (the->ignore[i] == 1)
 		i++;
 	ft_ignorezero(the);
-	return (the->pile[the->sub[the->i] - (i + 1)]);
+	the->pivot = the->pile[the->sub[the->i] - (i + 1)];
 }
 
-int	ft_issmallest(t_pile *the, int pivot)
+void	ft_ignorezero(t_pile *the)
 {
-	int i;
-	int j;
+	int	i;
+
+	i = 0;
+	while (i < the->size)
+		the->ignore[i++] = 0;
+}
+
+int	ft_small(t_pile *the, int pivot)
+{
+	int	i;
+	int	j;
 
 	i = 0;
 	j = the->sub[the->i] - 1;
@@ -84,10 +93,10 @@ int	ft_issmallest(t_pile *the, int pivot)
 	return (1);
 }
 
-int	ft_isbigest(t_pile *the, int pivot)
+int	ft_big(t_pile *the, int pivot)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = the->sub[the->i] - 1;
@@ -102,32 +111,3 @@ int	ft_isbigest(t_pile *the, int pivot)
 	}
 	return (1);
 }
-
-int	ft_anypaleft(t_pile *b, int pivot)
-{
-	int i;
-
-	i = 0;
-	while (i < b->sub[b->i])
-	{
-		if (b->pile[i] > pivot)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	ft_anypbleft(t_pile *a, int pivot)
-{
-	int i;
-
-	i = 0;
-	while (i < a->sub[a->i])
-	{
-		if (a->pile[i] < pivot)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-

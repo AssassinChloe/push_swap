@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:24:17 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/05 16:49:36 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/20 15:12:10 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,33 @@ int	ft_pb(t_pile *a, t_pile *b)
 	if (ft_removeonetop(a) < 0)
 		return (-1);
 	printf("pb\n");
+	return (0);
+}
+
+int	ft_anypaleft(t_pile *b)
+{
+	int	i;
+
+	i = 0;
+	while (i < b->sub[b->i])
+	{
+		if (b->pile[i] > b->pivot)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_anypbleft(t_pile *a)
+{
+	int	i;
+
+	i = 0;
+	while (i < a->sub[a->i])
+	{
+		if (a->pile[i] < a->pivot)
+			return (1);
+		i++;
+	}
 	return (0);
 }

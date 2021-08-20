@@ -6,14 +6,14 @@
 #    By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/05 16:23:30 by cassassi          #+#    #+#              #
-#    Updated: 2021/08/19 17:18:01 by cassassi         ###   ########.fr        #
+#    Updated: 2021/08/20 15:56:40 by cassassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= push_swap
 SRCS	= main.c ft_atoll.c ft_isdigit.c ft_sort.c push.c reverse_rotate.c\
-	  rotate.c swap.c utils.c quick_sort.c sort_5.c sort_3.c median.c\
-	  checksorting.c free.c parse.c
+	  rotate.c swap.c utils_push.c quick_sort.c sort_5.c sort_3.c median.c\
+	  checksorting.c free.c parse.c utils_qs.c sortsub_3.c
 OBJSD	= .obj/
 OBJS	= $(addprefix $(OBJSD), $(SRCS:%.c=%.o))
 INC		= -I push_swap.h
