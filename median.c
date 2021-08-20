@@ -6,34 +6,32 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 18:15:40 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/20 14:44:22 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/21 00:44:39 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_findmed(t_pile *the, int small, int big)
+static void	ft_findmed(t_pile *the, int *small, int *big, int *count)
 {
 	int	i;
-	int	count;
 
-	count = the->sub[the->i];
 	i = 1;
-	while (i <= the->sub[the->i] && count > 1)
+	while (i <= the->sub[the->i] && (*count) > 1)
 	{
-		if (the->ignore[i - 1] == 0 && small >= 0
+		if (the->ignore[i - 1] == 0 && (*small) >= 0
 			&& ft_small(the, the->pile[the->sub[the->i] - i]) == 1)
 		{
 			the->ignore[(i - 1)] = 1;
-			count--;
-			small--;
+			(*count)--;
+			(*small)--;
 		}
-		if (the->ignore[i - 1] == 0 && big >= 0
+		if (the->ignore[i - 1] == 0 && (*big) >= 0
 			&& ft_big(the, the->pile[the->sub[the->i] - i]) == 1)
 		{
 			the->ignore[(i - 1)] = 1;
-			count--;
-			big--;
+			(*count)--;
+			(*big)--;
 		}
 		i++;
 	}
@@ -44,8 +42,10 @@ void	ft_findmedstack(t_pile *the)
 	int	i;
 	int	j;
 	int	small;
+	int	count;
 	int	big;
-
+	
+	count = the->sub[the->i];
 	big = (the->sub[the->i] / 2) - 1;
 	small = (the->sub[the->i] / 2) - 1;
 	ft_ignorezero(the);
@@ -55,14 +55,15 @@ void	ft_findmedstack(t_pile *the)
 		j = the->sub[the->i] / 2;
 	while (j > 0)
 	{
-		ft_findmed(the, small, big);
-		j++;
+		ft_findmed(the, &small, &big, &count);
+		j--;
 	}
 	i = 0;
 	while (the->ignore[i] == 1)
 		i++;
 	ft_ignorezero(the);
 	the->pivot = the->pile[the->sub[the->i] - (i + 1)];
+	printf("pivot %d\n", the->pivot);
 }
 
 void	ft_ignorezero(t_pile *the)

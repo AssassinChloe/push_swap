@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/20 13:40:38 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/20 23:51:44 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	ft_buildpile(t_pile *a, int size, char **av)
 				return (-1);
 			}
 			a->size++;
+			a->sub[a->i]++;
 			i++;
 		}
 		else

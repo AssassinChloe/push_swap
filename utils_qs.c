@@ -6,7 +6,7 @@
 /*   By: cassassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 15:18:01 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/20 16:02:25 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/21 00:35:51 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_divide_a(t_pile *a, t_pile *b, int size)
 	i = 0;
 	while (i < size)
 	{
-		if (a->pile[0] <= a->pivot)
+		if (a->pile[0] < a->pivot)
 		{
 			if (ft_pb(a, b) < 0)
 			{
@@ -79,7 +79,7 @@ void	ft_divide_b(t_pile *a, t_pile *b, int size)
 	i = 0;
 	while (i < size)
 	{
-		if (b->pile[0] >= b->pivot)
+		if (b->pile[0] > b->pivot)
 		{
 			if (ft_pa(a, b) < 0)
 			{

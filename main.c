@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:47 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/19 17:17:26 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/20 23:50:21 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	ft_init(t_pile *the, int size)
 	the->ignore = malloc(sizeof(int) * size);
 	if (!the->ignore)
 		return (-1);
-	ft_ignorezero(the);
 	return (0);
 }
 
