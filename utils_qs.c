@@ -6,7 +6,7 @@
 /*   By: cassassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 15:18:01 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/21 00:35:51 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/23 17:58:47 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 
 void	ft_fiveunder_a(t_pile *a, t_pile *b)
 {
+
+	int i;
+	printf("suba %d ai %d\n", a->sub[a->i], a->i);
+	i = 0;
+	printf("A :");
+	while (i < a->size)
+		printf("%d ", a->pile[i++]);
+	i = 0;
+	printf("\nB : ");
+	while (i < b->size)
+		printf("%d ", b->pile[i++]);
+	printf("\n");
+
 	if (a->sub[a->i] == 2 && ft_checkifsorted(a) == 0)
 		ft_sa(a);
 	else if (a->sub[a->i] == 3 && ft_checkifsorted(a) == 0)
@@ -26,21 +39,37 @@ void	ft_fiveunder_a(t_pile *a, t_pile *b)
 
 void	ft_fiveunder_b(t_pile *a, t_pile *b)
 {
+
+	int i;
+	printf("subb %d bi %d\n", b->sub[b->i], b->i);
+	i = 0;
+	printf("A :");
+	while (i < a->size)
+		printf("%d ", a->pile[i++]);
+	i = 0;
+	printf("\nB : ");
+	while (i < b->size)
+		printf("%d ", b->pile[i++]);
+	printf("\n");
+
 	if (b->sub[b->i] == 2 && ft_checkifreversesorted(b) == 0)
 		ft_sb(b);
 	else if (b->sub[b->i] == 3 && ft_checkifreversesorted(b) == 0)
 		ft_sort3sub_b(b);
 	else if (b->sub[b->i] > 3 && ft_checkifreversesorted(b) == 0)
 		ft_sort5_b(a, b);
-	while (b->sub[b->i] > 0)
+	if (ft_checkifreversesorted(b) == 1)
 	{
-		ft_pa(a, b);
-		a->sub[a->i]++;
-		b->sub[b->i]--;
+		while (b->sub[b->i] > 0)
+		{
+			ft_pa(a, b);
+			a->sub[a->i]++;
+			b->sub[b->i]--;
+		}
+		b->i--;
+		if (b->i < 0)
+			b->i = 0;
 	}
-	b->i--;
-	if (b->i < 0)
-		b->i = 0;
 }
 
 void	ft_divide_a(t_pile *a, t_pile *b, int size)
