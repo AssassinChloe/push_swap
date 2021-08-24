@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:47 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/20 23:50:21 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/24 17:10:02 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ int	main(int ac, char **av)
 
 	if (ft_init(&a, (ac - 1)) < 0 || ft_init(&b, (ac - 1)) < 0)
 	{
-		printf("Error\n");
+		write(2, "Error\n", 6);
 		return (ft_free(&a, &b));
 	}
-	if (ac < 3)
+	if (ac < 2)
 	{
-		printf("Error nb argument\n");
+		write(2, "Error\n", 6);
 		return (ft_free(&a, &b));
 	}
 	else
@@ -47,7 +47,7 @@ int	main(int ac, char **av)
 			return (ft_free(&a, &b));
 	if (ft_checkdouble(&a) == 1)
 	{
-		printf("Error double\n");
+		write(2, "Error\n", 6);
 		return (ft_free(&a, &b));
 	}
 	if (ft_checkifallsorted(&a) == 1)
