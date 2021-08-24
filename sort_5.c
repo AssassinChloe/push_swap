@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 14:38:54 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/23 16:06:37 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/24 16:38:33 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,4 @@ void	ft_sort5_a(t_pile *a, t_pile *b)
 		ft_sort_3b(b);
 	else
 		ft_sort3sub_b(b);
-	while (b->sub[b->i] > 0)
-	{
-		ft_pa(a, b);
-		b->sub[b->i]--;
-		a->sub[a->i]++;
-	}
-	b->i--;
 }

@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:24:17 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/20 15:12:10 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/24 16:04:20 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_anypaleft(t_pile *b)
 	i = 0;
 	while (i < b->sub[b->i])
 	{
-		if (b->pile[i] > b->pivot)
+		if (b->pile[i] >= b->pivot)
 			return (1);
 		i++;
 	}
@@ -53,7 +53,7 @@ int	ft_anypbleft(t_pile *a)
 	i = 0;
 	while (i < a->sub[a->i])
 	{
-		if (a->pile[i] < a->pivot)
+		if (a->pile[i] <= a->pivot)
 			return (1);
 		i++;
 	}
