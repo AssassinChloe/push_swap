@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:47 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/24 17:10:02 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/25 14:07:09 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,16 @@ int	main(int ac, char **av)
 	t_pile	b;
 
 	if (ft_init(&a, (ac - 1)) < 0 || ft_init(&b, (ac - 1)) < 0)
-	{
-		write(2, "Error\n", 6);
-		return (ft_free(&a, &b));
-	}
+		ft_error(&a, &b);
 	if (ac < 2)
-	{
-		write(2, "Error\n", 6);
-		return (ft_free(&a, &b));
-	}
+		ft_error(&a, &b);
 	else
 		if (ft_buildpile(&a, ac, av) < 0 )
-			return (ft_free(&a, &b));
+			ft_error(&a, &b);
 	if (ft_checkdouble(&a) == 1)
-	{
-		write(2, "Error\n", 6);
-		return (ft_free(&a, &b));
-	}
+		ft_error(&a, &b);
 	if (ft_checkifallsorted(&a) == 1)
-		return (ft_free(&a, &b));
+		ft_free(&a, &b);
 	ft_sort(&a, &b);
 	return (0);
 }

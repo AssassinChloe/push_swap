@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:48:31 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/24 16:39:48 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/25 13:23:22 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 	{
 		while (b->size > 0)
 			ft_pa(a, b);
-		return ;
+		ft_free(a, b);
 	}
 	ft_quick_sort(a, b);
 }

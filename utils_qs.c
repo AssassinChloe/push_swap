@@ -6,7 +6,7 @@
 /*   By: cassassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 15:18:01 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/24 16:41:47 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/25 13:38:51 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,7 @@ void	ft_fiveunder_a(t_pile *a, t_pile *b)
 		ft_sort5_a(a, b);
 		while (b->sub[b->i] > 0)
 		{
-			if (ft_pa(a, b) < 0)
-			{
-				printf("error pa\n");
-				return ;
-			}
+			ft_pa(a, b);
 			b->sub[b->i]--;
 			a->sub[a->i]++;
 		}
@@ -69,11 +65,7 @@ void	ft_divide_a(t_pile *a, t_pile *b, int size)
 		if ((size > 5 && a->pile[0] <= a->pivot)
 			|| (size <= 5 && a->pile[0] < a->pivot))
 		{
-			if (ft_pb(a, b) < 0)
-			{
-				printf("error pb\n");
-				return ;
-			}
+			ft_pb(a, b);
 			b->sub[b->i]++;
 			a->sub[a->i]--;
 		}
@@ -96,11 +88,7 @@ void	ft_divide_b(t_pile *a, t_pile *b, int size)
 		if ((size > 5 && b->pile[0] >= b->pivot)
 			|| (size <= 5 && b->pile[0] > b->pivot))
 		{
-			if (ft_pa(a, b) < 0)
-			{
-				printf("error pa\n");
-				return ;
-			}
+			ft_pa(a, b);
 			a->sub[a->i]++;
 			b->sub[b->i]--;
 		}
