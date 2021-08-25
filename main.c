@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:47 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/25 14:07:09 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/25 16:40:16 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,10 @@ int	main(int ac, char **av)
 
 	if (ft_init(&a, (ac - 1)) < 0 || ft_init(&b, (ac - 1)) < 0)
 		ft_error(&a, &b);
-	if (ac < 2)
+	if (ac <= 2)
 		ft_error(&a, &b);
-	else
-		if (ft_buildpile(&a, ac, av) < 0 )
-			ft_error(&a, &b);
+	if (ft_buildpile(&a, ac, av) < 0 )
+		ft_error(&a, &b);
 	if (ft_checkdouble(&a) == 1)
 		ft_error(&a, &b);
 	if (ft_checkifallsorted(&a) == 1)

@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:24:17 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/25 13:48:07 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/25 15:40:03 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_pa(t_pile *a, t_pile *b)
 		ft_error(a, b);
 	if (ft_removeonetop(b) < 0)
 		ft_error(a, b);
-	printf("pa\n");
+	write(1, "pa\n", 3);
 }
 
 void	ft_pb(t_pile *a, t_pile *b)
@@ -27,7 +27,7 @@ void	ft_pb(t_pile *a, t_pile *b)
 		ft_error(a, b);
 	if (ft_removeonetop(a) < 0)
 		ft_error(a, b);
-	printf("pb\n");
+	write(1, "pb\n", 3);
 }
 
 int	ft_anypaleft(t_pile *b)

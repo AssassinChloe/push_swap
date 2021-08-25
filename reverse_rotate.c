@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:24:56 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/05 16:50:22 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/25 15:42:11 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 void	ft_rra(t_pile *a)
 {
 	ft_bottotop(a);
-	printf("rra\n");
+	write(1, "rra\n", 4);
 }
 
 void	ft_rrb(t_pile *b)
 {
 	ft_bottotop(b);
-	printf("rrb\n");
+	write(1, "rrb\n", 4);
 }
 
 void	ft_rrr(t_pile *a, t_pile *b)
 {
 	ft_bottotop(a);
 	ft_bottotop(b);
-	printf("rrr\n");
+	write(1, "rrr\n", 4);
 }
 
 void	ft_bottotop(t_pile *the)
