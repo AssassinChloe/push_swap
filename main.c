@@ -6,40 +6,36 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:47 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/25 16:40:16 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/27 15:58:04 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_isnb(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '+' || str[i] == '-' || ft_isdigit(str[i]) == 1)
-			i++;
-		else
-			return (-1);
-	}
-	return (1);
-}
-
 int	main(int ac, char **av)
 {
 	t_pile	a;
 	t_pile	b;
-
+	char	**tab[(ac-1)];
+	int	i;
+	
+	i = 0;
 	if (ft_init(&a, (ac - 1)) < 0 || ft_init(&b, (ac - 1)) < 0)
 		ft_error(&a, &b);
-	if (ac <= 2)
+	if (ac < 2)
 		ft_error(&a, &b);
-	if (ft_buildpile(&a, ac, av) < 0 )
+	while (i < (ac - 1))
+	{
+		tab[i] = ft_split(av[(i + 1)], " ");
+		i++;
+	}
+	if (ft_buildpile(&a, i, tab) < 0)
 		ft_error(&a, &b);
 	if (ft_checkdouble(&a) == 1)
+	{
+		printf("plop\n");
 		ft_error(&a, &b);
+	}
 	if (ft_checkifallsorted(&a) == 1)
 		ft_free(&a, &b);
 	ft_sort(&a, &b);
@@ -69,11 +65,12 @@ int	ft_checkdouble(t_pile *a)
 	int	j;
 
 	i = 0;
-	while (i < a->size - 1)
+	while (i < (a->size - 1))
 	{
 		j = i + 1;
 		while (j < a->size)
 		{
+			printf("i %d j %d\n", a->pile[i], a->pile[j]);
 			if (a->pile[i] == a->pile[j])
 				return (1);
 			j++;

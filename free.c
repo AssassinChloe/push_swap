@@ -6,11 +6,27 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:16:41 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/25 13:36:31 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/27 15:09:40 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_free_tab(char ***tab, int size)
+{
+	int i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (tab[i] != NULL)
+		{
+			free(tab[i]);
+			tab[i] = NULL;
+		}
+		i++;
+	}
+}
 
 int	ft_free(t_pile *a, t_pile *b)
 {

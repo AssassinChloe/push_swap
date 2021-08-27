@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:24:28 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 12:31:52 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/27 15:24:33 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ typedef struct s_pile
 	int	i;
 }	t_pile;
 
-long long	ft_atoll(const char *str);
-int			ft_buildpile(t_pile *a, int size, char **av);
+int			ft_buildpile(t_pile *a, int size, char ***tab);
 int			ft_isnb(char *str);
 int			ft_checkifsorted(t_pile *a);
 int			ft_checkifallsorted(t_pile *a);
@@ -79,4 +78,5 @@ void		ft_findmedstack(t_pile *the);
 void		ft_endfree(t_pile *the);
 int			ft_free(t_pile *a, t_pile *b);
 int			ft_error(t_pile *a, t_pile *b);
+void	ft_free_tab(char ***tab, int size);
 #endif
