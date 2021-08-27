@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 12:32:35 by cassassi         ###   ########.fr       */
+/*   Created: 2020/11/18 17:11:55 by cassassi          #+#    #+#             */
+/*   Updated: 2021/06/10 17:22:59 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_buildpile(t_pile *a, int size, char **av)
+size_t	ft_strlen(const char *s)
 {
-	int			i;
-	long long	ret;
+	size_t	i;
 
-	i = 1;
-	while (i < size)
+	i = 0;
+	while (s[i] != '\0')
 	{
-		if (ft_isnb(av[i]) > 0)
-		{
-			ret = ft_atoll(av[i]);
-			if (ret < INT_MIN || ret > INT_MAX)
-				return (-1);
-			a->pile[a->size] = ret;
-			a->size++;
-			a->sub[a->i]++;
-			i++;
-		}
-		else
-			return (-1);
+		i++;
 	}
-	return (0);
+	return (i);
 }

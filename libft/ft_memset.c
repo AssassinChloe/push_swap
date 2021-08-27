@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 12:32:35 by cassassi         ###   ########.fr       */
+/*   Created: 2020/11/19 11:00:53 by cassassi          #+#    #+#             */
+/*   Updated: 2020/11/19 11:28:43 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_buildpile(t_pile *a, int size, char **av)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	int			i;
-	long long	ret;
+	unsigned int	i;
+	unsigned char	*swp;
 
-	i = 1;
-	while (i < size)
+	i = 0;
+	swp = (unsigned char *)b;
+	while (i < len)
 	{
-		if (ft_isnb(av[i]) > 0)
-		{
-			ret = ft_atoll(av[i]);
-			if (ret < INT_MIN || ret > INT_MAX)
-				return (-1);
-			a->pile[a->size] = ret;
-			a->size++;
-			a->sub[a->i]++;
-			i++;
-		}
-		else
-			return (-1);
+		swp[i] = (unsigned char)c;
+		i++;
 	}
-	return (0);
+	b = (void *)swp;
+	return (b);
 }

@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 12:32:35 by cassassi         ###   ########.fr       */
+/*   Created: 2020/11/23 10:18:38 by cassassi          #+#    #+#             */
+/*   Updated: 2020/11/23 10:33:32 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_buildpile(t_pile *a, int size, char **av)
+int	ft_toupper(int c)
 {
-	int			i;
-	long long	ret;
-
-	i = 1;
-	while (i < size)
-	{
-		if (ft_isnb(av[i]) > 0)
-		{
-			ret = ft_atoll(av[i]);
-			if (ret < INT_MIN || ret > INT_MAX)
-				return (-1);
-			a->pile[a->size] = ret;
-			a->size++;
-			a->sub[a->i]++;
-			i++;
-		}
-		else
-			return (-1);
-	}
-	return (0);
+	if (c >= 'a' && c <= 'z')
+		c = c - 32;
+	return (c);
 }

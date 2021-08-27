@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 12:32:35 by cassassi         ###   ########.fr       */
+/*   Created: 2020/11/25 16:47:03 by cassassi          #+#    #+#             */
+/*   Updated: 2020/11/30 12:00:40 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_buildpile(t_pile *a, int size, char **av)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int			i;
-	long long	ret;
+	char			*sub;
+	unsigned int	i;
 
-	i = 1;
-	while (i < size)
+	i = 0;
+	if (!(s))
+		return (NULL);
+	sub = (char *)malloc(sizeof(char) * len + 1);
+	if (!(sub))
+		return (NULL);
+	if (start < ft_strlen(s))
 	{
-		if (ft_isnb(av[i]) > 0)
+		while (s[start + i] && i < len)
 		{
-			ret = ft_atoll(av[i]);
-			if (ret < INT_MIN || ret > INT_MAX)
-				return (-1);
-			a->pile[a->size] = ret;
-			a->size++;
-			a->sub[a->i]++;
+			sub[i] = s[start + i];
 			i++;
 		}
-		else
-			return (-1);
 	}
-	return (0);
+	sub[i] = '\0';
+	return (sub);
 }

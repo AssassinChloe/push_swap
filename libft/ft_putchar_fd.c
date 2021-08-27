@@ -1,37 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 12:32:35 by cassassi         ###   ########.fr       */
+/*   Created: 2020/11/26 17:27:06 by cassassi          #+#    #+#             */
+/*   Updated: 2020/11/26 17:30:17 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_buildpile(t_pile *a, int size, char **av)
+void	ft_putchar_fd(char c, int fd)
 {
-	int			i;
-	long long	ret;
-
-	i = 1;
-	while (i < size)
-	{
-		if (ft_isnb(av[i]) > 0)
-		{
-			ret = ft_atoll(av[i]);
-			if (ret < INT_MIN || ret > INT_MAX)
-				return (-1);
-			a->pile[a->size] = ret;
-			a->size++;
-			a->sub[a->i]++;
-			i++;
-		}
-		else
-			return (-1);
-	}
-	return (0);
+	write(fd, &c, 1);
 }

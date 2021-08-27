@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 12:32:35 by cassassi         ###   ########.fr       */
+/*   Created: 2020/11/19 12:22:40 by cassassi          #+#    #+#             */
+/*   Updated: 2020/11/30 14:28:35 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_buildpile(t_pile *a, int size, char **av)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int			i;
-	long long	ret;
+	unsigned int	i;
+	unsigned char	*tmpdst;
+	unsigned char	*tmpsrc;
 
-	i = 1;
-	while (i < size)
+	if (!(dst) && !(src))
+		return (NULL);
+	i = 0;
+	tmpdst = (unsigned char *)dst;
+	tmpsrc = (unsigned char *)src;
+	while (i < n)
 	{
-		if (ft_isnb(av[i]) > 0)
-		{
-			ret = ft_atoll(av[i]);
-			if (ret < INT_MIN || ret > INT_MAX)
-				return (-1);
-			a->pile[a->size] = ret;
-			a->size++;
-			a->sub[a->i]++;
-			i++;
-		}
-		else
-			return (-1);
+		*(tmpdst + i) = *(tmpsrc + i);
+		i++;
 	}
-	return (0);
+	return (dst);
 }

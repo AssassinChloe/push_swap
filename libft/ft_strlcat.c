@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 12:32:35 by cassassi         ###   ########.fr       */
+/*   Created: 2020/11/23 15:52:31 by cassassi          #+#    #+#             */
+/*   Updated: 2020/11/25 12:17:44 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_buildpile(t_pile *a, int size, char **av)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	int			i;
-	long long	ret;
+	size_t	j;
+	size_t	i;
+	size_t	dstlen;
 
-	i = 1;
-	while (i < size)
+	i = 0;
+	j = 0;
+	if (dstsize == 0)
+		return (ft_strlen(src));
+	while (dst[i] && i < dstsize)
+		i++;
+	dstlen = i;
+	while (src[j] && i < dstsize - 1)
 	{
-		if (ft_isnb(av[i]) > 0)
-		{
-			ret = ft_atoll(av[i]);
-			if (ret < INT_MIN || ret > INT_MAX)
-				return (-1);
-			a->pile[a->size] = ret;
-			a->size++;
-			a->sub[a->i]++;
-			i++;
-		}
-		else
-			return (-1);
+		dst[i] = src[j];
+		i++;
+		j++;
 	}
-	return (0);
+	if (dstlen < dstsize)
+		dst[i] = '\0';
+	return (ft_strlen(src) + dstlen);
 }

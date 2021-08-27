@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 12:32:35 by cassassi         ###   ########.fr       */
+/*   Created: 2020/11/20 15:35:00 by cassassi          #+#    #+#             */
+/*   Updated: 2020/11/20 15:36:24 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_buildpile(t_pile *a, int size, char **av)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int			i;
-	long long	ret;
+	size_t			i;
+	int				diff;
+	unsigned char	*tmps1;
+	unsigned char	*tmps2;
 
-	i = 1;
-	while (i < size)
+	i = 0;
+	diff = 0;
+	tmps1 = (unsigned char *)s1;
+	tmps2 = (unsigned char *)s2;
+	while (i < n)
 	{
-		if (ft_isnb(av[i]) > 0)
+		if (tmps1[i] != tmps2[i])
 		{
-			ret = ft_atoll(av[i]);
-			if (ret < INT_MIN || ret > INT_MAX)
-				return (-1);
-			a->pile[a->size] = ret;
-			a->size++;
-			a->sub[a->i]++;
-			i++;
+			diff = (tmps1[i] - tmps2[i]);
+			return (diff);
 		}
-		else
-			return (-1);
+		i++;
 	}
 	return (0);
 }

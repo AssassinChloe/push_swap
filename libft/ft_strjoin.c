@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 12:32:35 by cassassi         ###   ########.fr       */
+/*   Created: 2020/11/25 17:06:08 by cassassi          #+#    #+#             */
+/*   Updated: 2020/11/30 12:34:15 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_buildpile(t_pile *a, int size, char **av)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int			i;
-	long long	ret;
+	unsigned int	i;
+	unsigned int	j;
+	char			*s3;
 
-	i = 1;
-	while (i < size)
+	i = 0;
+	j = 0;
+	if (!(s1) || !(s2))
+		return (NULL);
+	s3 = (char *)malloc(sizeof(char) * (ft_strlen(s1) + (ft_strlen(s2)) + 1));
+	if (!(s3))
+		return (NULL);
+	while (s1[i])
 	{
-		if (ft_isnb(av[i]) > 0)
-		{
-			ret = ft_atoll(av[i]);
-			if (ret < INT_MIN || ret > INT_MAX)
-				return (-1);
-			a->pile[a->size] = ret;
-			a->size++;
-			a->sub[a->i]++;
-			i++;
-		}
-		else
-			return (-1);
+		s3[j++] = s1[i++];
 	}
-	return (0);
+	i = 0;
+	while (s2[i])
+	{
+		s3[j] = s2[i];
+		i++;
+		j++;
+	}
+	s3[j] = '\0';
+	return (s3);
 }

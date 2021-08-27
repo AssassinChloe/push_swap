@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 12:32:35 by cassassi         ###   ########.fr       */
+/*   Created: 2020/11/19 16:01:14 by cassassi          #+#    #+#             */
+/*   Updated: 2020/11/30 14:42:44 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_buildpile(t_pile *a, int size, char **av)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int			i;
-	long long	ret;
+	size_t			i;
 
-	i = 1;
-	while (i < size)
+	if (!(dst) && !(src))
+		return (NULL);
+	if (src < dst)
 	{
-		if (ft_isnb(av[i]) > 0)
+		i = len;
+		while (i > 0)
 		{
-			ret = ft_atoll(av[i]);
-			if (ret < INT_MIN || ret > INT_MAX)
-				return (-1);
-			a->pile[a->size] = ret;
-			a->size++;
-			a->sub[a->i]++;
+			((char *)dst)[i - 1] = ((char *)src)[i - 1];
+			i--;
+		}
+	}
+	else
+	{
+		i = 0;
+		while (i < len)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
 			i++;
 		}
-		else
-			return (-1);
 	}
-	return (0);
+	return ((void *)dst);
 }

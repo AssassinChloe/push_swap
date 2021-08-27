@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:24:28 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/25 13:48:42 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/08/27 12:31:52 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include "libft/libft.h"
 
 typedef struct s_pile
 {
@@ -30,7 +31,6 @@ typedef struct s_pile
 }	t_pile;
 
 long long	ft_atoll(const char *str);
-int			ft_isdigit(int c);
 int			ft_buildpile(t_pile *a, int size, char **av);
 int			ft_isnb(char *str);
 int			ft_checkifsorted(t_pile *a);

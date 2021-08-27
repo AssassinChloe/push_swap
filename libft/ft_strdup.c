@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 12:32:35 by cassassi         ###   ########.fr       */
+/*   Created: 2020/11/25 15:27:42 by cassassi          #+#    #+#             */
+/*   Updated: 2020/11/25 16:36:14 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_buildpile(t_pile *a, int size, char **av)
+char	*ft_strdup(const char *s1)
 {
-	int			i;
-	long long	ret;
+	char	*s2;
+	size_t	i;
+	size_t	len;
 
-	i = 1;
-	while (i < size)
+	len = ft_strlen(s1);
+	s2 = (char *)malloc(sizeof(char) * len + 1);
+	if (!(s2))
+		return (NULL);
+	i = 0;
+	while (s1[i])
 	{
-		if (ft_isnb(av[i]) > 0)
-		{
-			ret = ft_atoll(av[i]);
-			if (ret < INT_MIN || ret > INT_MAX)
-				return (-1);
-			a->pile[a->size] = ret;
-			a->size++;
-			a->sub[a->i]++;
-			i++;
-		}
-		else
-			return (-1);
+		s2[i] = s1[i];
+		i++;
 	}
-	return (0);
+	s2[i] = '\0';
+	return (s2);
 }
