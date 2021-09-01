@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 15:54:14 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/09/01 17:51:20 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,24 @@ int	ft_isnb(char *str)
 	return (1);
 }
 
+static int	ft_tradinpile(t_pile *a, char *nb)
+{
+	long long	ret;
+
+	ret = ft_atoll(nb);
+	if (ret < INT_MIN || ret > INT_MAX)
+		return (-1);
+	a->pile[a->size] = ret;
+	a->size++;
+	a->sub[a->i]++;
+	return (0);
+
+}
 int	ft_buildpile(t_pile *a, int size, char ***tab)
 {
-	int			i;
-	int			len;
-	int			j;
-	long long	ret;
+	int	i;
+	int	len;
+	int	j;
 
 	i = 0;
 	while (i < size)
@@ -43,22 +55,12 @@ int	ft_buildpile(t_pile *a, int size, char ***tab)
 			len++;
 		while (j < len)
 		{
-			if (ft_isnb(tab[i][j]) > 0)
-			{
-				ret = ft_atoll(tab[i][j]);
-				if (ret < INT_MIN || ret > INT_MAX)
-					return (-1);
-				a->pile[a->size] = ret;
-				a->size++;
-				a->sub[a->i]++;
-				j++;
-			}
-			else
+			if (ft_tradinpile(a, tab[i][j]) < 0)
 				return (-1);
+			j++;
 		}
 		i++;
 	}
 	ft_free_tab(tab, size);
-	printf("%d\n", a->size);
 	return (0);
 }

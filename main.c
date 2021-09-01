@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:47 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 15:58:04 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/09/01 17:59:41 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,41 @@ int	main(int ac, char **av)
 {
 	t_pile	a;
 	t_pile	b;
-	char	**tab[(ac-1)];
-	int	i;
-	
-	i = 0;
+	char	***tab;
+	int		i;
+
+	if (ac == 1)
+	{
+		write(2, "Error\n", 6);
+		return (EXIT_FAILURE);
+	}
 	if (ft_init(&a, (ac - 1)) < 0 || ft_init(&b, (ac - 1)) < 0)
 		ft_error(&a, &b);
-	if (ac < 2)
-		ft_error(&a, &b);
+	i = 1;
+	while (i < ac)
+	{
+		if (ft_isnb(av[i++]) < 0)
+		{
+			write(1, "ici", 3);
+			ft_error(&a, &b);
+		}
+	}
+	tab = malloc(sizeof(char **) * ac - 1); 
+	i = 0;
 	while (i < (ac - 1))
 	{
 		tab[i] = ft_split(av[(i + 1)], " ");
+		if (tab[i][0] == NULL)
+		{
+			ft_free_tab(tab, i);
+			ft_error(&a, &b);
+		}
 		i++;
 	}
 	if (ft_buildpile(&a, i, tab) < 0)
 		ft_error(&a, &b);
 	if (ft_checkdouble(&a) == 1)
-	{
-		printf("plop\n");
 		ft_error(&a, &b);
-	}
 	if (ft_checkifallsorted(&a) == 1)
 		ft_free(&a, &b);
 	ft_sort(&a, &b);
@@ -70,7 +85,6 @@ int	ft_checkdouble(t_pile *a)
 		j = i + 1;
 		while (j < a->size)
 		{
-			printf("i %d j %d\n", a->pile[i], a->pile[j]);
 			if (a->pile[i] == a->pile[j])
 				return (1);
 			j++;
