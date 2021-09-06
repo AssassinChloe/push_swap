@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 17:06:38 by cassassi          #+#    #+#             */
-/*   Updated: 2021/09/01 17:51:20 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/09/06 12:28:32 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	ft_isnb(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '+' || str[i] == '-' || ft_isdigit(str[i]) == 1)
+		if (str[i] == ' ' || str[i] == '\t' || str[i] == '+'
+			|| str[i] == '-' || ft_isdigit(str[i]) == 1)
 			i++;
 		else
 			return (-1);
@@ -27,10 +28,28 @@ int	ft_isnb(char *str)
 	return (1);
 }
 
+static int	ft_isvalid(char *str)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i] && count < 2)
+	{
+		if (str[i] == '+' || str[i] == '-')
+			count++;
+		i++;
+	}
+	return (count);
+}
+
 static int	ft_tradinpile(t_pile *a, char *nb)
 {
 	long long	ret;
 
+	if (ft_isvalid(nb) > 1)
+		return (-1);
 	ret = ft_atoll(nb);
 	if (ret < INT_MIN || ret > INT_MAX)
 		return (-1);
@@ -38,8 +57,8 @@ static int	ft_tradinpile(t_pile *a, char *nb)
 	a->size++;
 	a->sub[a->i]++;
 	return (0);
-
 }
+
 int	ft_buildpile(t_pile *a, int size, char ***tab)
 {
 	int	i;

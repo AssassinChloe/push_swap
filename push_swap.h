@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:24:28 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/27 15:24:33 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/09/06 11:27:44 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ void		ft_endfree(t_pile *the);
 int			ft_free(t_pile *a, t_pile *b);
 int			ft_error(t_pile *a, t_pile *b);
 void	ft_free_tab(char ***tab, int size);
+void	ft_quit();
 #endif

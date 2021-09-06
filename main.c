@@ -6,11 +6,32 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:23:47 by cassassi          #+#    #+#             */
-/*   Updated: 2021/09/01 17:59:41 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/09/06 12:27:45 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int	ft_count(char ***tab, int len)
+{
+	int	i;
+	int	j;
+	int	size;
+
+	size = 0;
+	i = 0;
+	while (i < len)
+	{
+		j = 0;
+		while (tab[i][j])
+		{
+			j++;
+			size++;
+		}
+		i++;
+	}
+	return (size);
+}
 
 int	main(int ac, char **av)
 {
@@ -18,24 +39,19 @@ int	main(int ac, char **av)
 	t_pile	b;
 	char	***tab;
 	int		i;
+	int		size;
 
 	if (ac == 1)
-	{
-		write(2, "Error\n", 6);
-		return (EXIT_FAILURE);
-	}
-	if (ft_init(&a, (ac - 1)) < 0 || ft_init(&b, (ac - 1)) < 0)
-		ft_error(&a, &b);
+		ft_quit();
 	i = 1;
 	while (i < ac)
 	{
 		if (ft_isnb(av[i++]) < 0)
-		{
-			write(1, "ici", 3);
-			ft_error(&a, &b);
-		}
+			ft_quit();
 	}
-	tab = malloc(sizeof(char **) * ac - 1); 
+	tab = malloc(sizeof(char **) * ac - 1);
+	if (!tab)
+		ft_quit();
 	i = 0;
 	while (i < (ac - 1))
 	{
@@ -43,12 +59,18 @@ int	main(int ac, char **av)
 		if (tab[i][0] == NULL)
 		{
 			ft_free_tab(tab, i);
-			ft_error(&a, &b);
+			ft_quit();
 		}
 		i++;
 	}
-	if (ft_buildpile(&a, i, tab) < 0)
+	size = ft_count(tab, i);
+	if (ft_init(&a, size) < 0 || ft_init(&b, size) < 0)
 		ft_error(&a, &b);
+	if (ft_buildpile(&a, i, tab) < 0)
+	{
+		ft_free_tab(tab, i);
+		ft_error(&a, &b);
+	}
 	if (ft_checkdouble(&a) == 1)
 		ft_error(&a, &b);
 	if (ft_checkifallsorted(&a) == 1)
