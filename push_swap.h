@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:24:28 by cassassi          #+#    #+#             */
-/*   Updated: 2021/09/06 11:27:44 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/09/06 16:16:53 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_pile
 	int	i;
 }	t_pile;
 
+void		ft_check_arg(int ac, char **av);
+void		ft_check_pile(t_pile *a, t_pile *b, char ***tab, int i);
 int			ft_buildpile(t_pile *a, int size, char ***tab);
 int			ft_isnb(char *str);
 int			ft_checkifsorted(t_pile *a);
@@ -68,7 +70,6 @@ int			ft_checkdouble(t_pile *a);
 void		init_quick_sort(t_pile *a, t_pile *b);
 void		ft_sort3sub_b(t_pile *b);
 void		ft_sort3sub_a(t_pile *a);
-void		ft_newsort5(t_pile *a, t_pile *b);
 void		ft_sort_3b(t_pile *a);
 void		ft_sort5_b(t_pile *a, t_pile *b);
 int			ft_anypbleft(t_pile *a);
@@ -78,6 +79,6 @@ void		ft_findmedstack(t_pile *the);
 void		ft_endfree(t_pile *the);
 int			ft_free(t_pile *a, t_pile *b);
 int			ft_error(t_pile *a, t_pile *b);
-void	ft_free_tab(char ***tab, int size);
-void	ft_quit();
+void		ft_free_tab(char ***tab, int size);
+void		ft_quit(void);
 #endif

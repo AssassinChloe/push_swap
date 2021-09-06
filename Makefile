@@ -6,7 +6,7 @@
 #    By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/05 16:23:30 by cassassi          #+#    #+#              #
-#    Updated: 2021/08/27 12:42:22 by cassassi         ###   ########.fr        #
+#    Updated: 2021/09/06 16:08:19 by cassassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= push_swap
 
 SRCS	= main.c ft_sort.c push.c reverse_rotate.c\
 	  rotate.c swap.c utils_push.c quick_sort.c sort_5.c sort_3.c median.c\
-	  checksorting.c free.c parse.c utils_qs.c sortsub_3.c
+	  checksorting.c free.c parse.c utils_qs.c sortsub_3.c init.c
 
 OBJSD	= .obj/
 
