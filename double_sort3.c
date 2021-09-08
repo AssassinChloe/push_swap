@@ -6,7 +6,7 @@
 /*   By: cassassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 15:28:14 by cassassi          #+#    #+#             */
-/*   Updated: 2021/09/07 08:20:48 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/09/08 16:19:36 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,24 @@ void	ft_double_sort(t_pile *a, t_pile *b)
 	j = 0;
 	tab[0] = NULL;
 	tab[1] = NULL;
-	if ((a->i == 0 || a->size <= 3) && (b->i == 0 || b->size <= 3))
+	if ((a->i == 0 || a->size <= 3) || (b->i == 0 || b->size <= 3))
 	{
-		mva = ft_sort_3d(a, tab);
-		mvb = ft_sort_3bd(b, tab);
+		if (a->i == 0 || a->size <= 3)
+			mva = ft_sort_3d(a, tab);
+		else
+			mva = ft_sort3sub_ad(a, tab);
+		if (b->i == 0 || b->size <= 3)
+			mvb = ft_sort_3bd(b, tab);
+		else
+			mvb = ft_sort3sub_bd(b, tab);
 	}
 	else
 	{
-		mva = ft_sort_3subd(a, tab);
-		mvb = ft_sort_3subbd(b, tab);
+		mva = ft_sort3sub_ad(a, tab);
+		mvb = ft_sort3sub_bd(b, tab);
 	}
-/*	while (i < mva)
+	/*
+	while (i < mva)
 		printf("%d", tab[0][i++]);
 	printf("\n");
 	while (j < mvb)
@@ -61,7 +68,7 @@ void	ft_double_sort(t_pile *a, t_pile *b)
 	printf("\n");
 	i = 0;
 	j = 0;
-	*/
+	  */
 	while (i < mva && j < mvb)
 	{
 		if (tab[0][i] == tab[1][j])
@@ -92,10 +99,10 @@ void	ft_double_sort(t_pile *a, t_pile *b)
 	}
 	while (i < mva || j < mvb)
 	{
-	if (i < mva)
-		ft_acton_a(a, tab, &i);
-	if (j < mvb)
-		ft_acton_b(b, tab, &j);
+		if (i < mva)
+			ft_acton_a(a, tab, &i);
+		if (j < mvb)
+			ft_acton_b(b, tab, &j);
 	}
 	free(tab[0]);
 	free(tab[1]);
