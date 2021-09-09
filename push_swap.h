@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 16:24:28 by cassassi          #+#    #+#             */
-/*   Updated: 2021/09/08 15:37:48 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/09/09 16:44:26 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ typedef struct s_pile
 	int	rot;
 	int	i;
 }	t_pile;
+
+typedef struct s_move
+{
+	int	a;
+	int	b;
+	int	i;
+	int	j;
+}	t_move;
 
 void		ft_check_arg(int ac, char **av);
 void		ft_check_pile(t_pile *a, t_pile *b, char ***tab, int i);
@@ -81,13 +89,12 @@ int			ft_free(t_pile *a, t_pile *b);
 int			ft_error(t_pile *a, t_pile *b);
 void		ft_free_tab(char ***tab, int size);
 void		ft_quit(void);
-
-int	ft_sort_3bd(t_pile *b, int *tab[2]);
-int	ft_sort_3d(t_pile *a, int *tab[2]);
-void	ft_double_sort(t_pile *a, t_pile *b);
-void	ft_acton_b (t_pile *b, int *tab[2], int *j);
-void	ft_acton_a (t_pile *a, int *tab[2], int *i);
-int		ft_sort3sub_bd(t_pile *b, int *tab[2]);
-int		ft_sort3sub_ad(t_pile *a, int *tab[2]);
+int			ft_sort_3bd(t_pile *b, int *tab[2]);
+int			ft_sort_3d(t_pile *a, int *tab[2]);
+void		ft_double_sort(t_pile *a, t_pile *b);
+void		ft_acton_b(t_pile *b, int *tab[2], int *j);
+void		ft_acton_a(t_pile *a, int *tab[2], int *i);
+int			ft_sort3sub_bd(t_pile *b, int *tab[2]);
+int			ft_sort3sub_ad(t_pile *a, int *tab[2]);
 
 #endif

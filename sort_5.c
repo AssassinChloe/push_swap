@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 14:38:54 by cassassi          #+#    #+#             */
-/*   Updated: 2021/09/08 16:25:52 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/09/09 16:02:46 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,7 @@ void	ft_sort5_b(t_pile *a, t_pile *b)
 			b->rot--;
 		}
 	}
-			ft_double_sort(a, b);	
-	/*
-	if (a->i == 0 || a->size <= 3)
-		ft_sort_3(a);
-	else
-		ft_sort3sub_a(a);
-	if (b->i == 0 || b->size <= 3)
-		ft_sort_3b(b);
-	else
-		ft_sort3sub_b(b);*/
+	ft_double_sort(a, b);
 }
 
 void	ft_sort5_a(t_pile *a, t_pile *b)
@@ -52,16 +43,5 @@ void	ft_sort5_a(t_pile *a, t_pile *b)
 			a->rot--;
 		}
 	}
-	if ((a->i == 0 || a->size <= 3) && (b->i == 0 || b->size <= 3))
-		{
-			ft_double_sort(a, b);	
-		}
-	//if (a->i == 0 || a->size <= 3)
-	//	ft_sort_3(a);
-	else
-		ft_sort3sub_a(a);
-	//if (b->i == 0 || b->size <= 3)
-	//	ft_sort_3b(b);
-	//else
-		ft_sort3sub_b(b);
+	ft_double_sort(a, b);
 }

@@ -6,7 +6,7 @@
 /*   By: cassassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 15:18:01 by cassassi          #+#    #+#             */
-/*   Updated: 2021/09/07 07:19:09 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/09/09 16:04:19 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,33 @@ void	ft_fiveunder_b(t_pile *a, t_pile *b)
 	}
 }
 
+static int	ft_count_p(t_pile *the)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (i < the->sub[the->i])
+	{
+		if (the->pile[i] <= the->pivot)
+			count++;
+		i++;
+	}
+	return (count);
+}
+
 void	ft_divide_a(t_pile *a, t_pile *b, int size)
 {
 	int	i;
+	int	ret;
 
+	ret = ft_count_p(a);
 	i = 0;
 	while (i < size)
 	{
-		if ((size > 5 && a->pile[0] <= a->pivot)
-			|| (size <= 5 && a->pile[0] < a->pivot))
+		if (((size > 6 || (size <= 6 && ret <= 3)) && a->pile[0] <= a->pivot)
+			|| (size <= 6 && a->pile[0] < a->pivot))
 		{
 			ft_pb(a, b);
 			b->sub[b->i]++;
@@ -81,12 +99,14 @@ void	ft_divide_a(t_pile *a, t_pile *b, int size)
 void	ft_divide_b(t_pile *a, t_pile *b, int size)
 {
 	int	i;
+	int	ret;
 
+	ret = ft_count_p(b);
 	i = 0;
 	while (i < size)
 	{
-		if ((size > 5 && b->pile[0] >= b->pivot)
-			|| (size <= 5 && b->pile[0] > b->pivot))
+		if ((b->pile[0] >= b->pivot && (size > 6 || (size <= 6 && ret > 3)))
+			|| (b->pile[0] > b->pivot && size <= 6))
 		{
 			ft_pa(a, b);
 			a->sub[a->i]++;

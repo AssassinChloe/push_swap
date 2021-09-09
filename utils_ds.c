@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort.c                                          :+:      :+:    :+:   */
+/*   utils_ds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/05 16:23:08 by cassassi          #+#    #+#             */
-/*   Updated: 2021/09/09 16:01:09 by cassassi         ###   ########.fr       */
+/*   Created: 2021/09/09 16:39:16 by cassassi          #+#    #+#             */
+/*   Updated: 2021/09/09 16:40:03 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_sort(t_pile *a, t_pile *b)
+void	ft_acton_a(t_pile *a, int *tab[2], int *i)
 {
-	if (a->size == 2)
+	if (tab[0][*i] == 2)
 		ft_sa(a);
-	else if (a->size == 3)
-		ft_sort_3(a);
-	else if (a->size > 3 && a->size <= 5)
-	{
-		ft_sort5_a(a, b);
-		while (b->sub[b->i] > 0)
-		{
-			ft_pa(a, b);
-			b->sub[b->i]--;
-			a->sub[a->i]++;
-		}
-		b->i--;
-	}
+	else if (tab[0][*i] == 3)
+		ft_ra(a);
 	else
-		init_quick_sort(a, b);
-	ft_free(a, b);
-	return ;
+		ft_rra(a);
+	(*i)++;
+}
+
+void	ft_acton_b(t_pile *b, int *tab[2], int *j)
+{
+	if (tab[1][*j] == 2)
+		ft_sb(b);
+	else if (tab[1][*j] == 3)
+		ft_rb(b);
+	else
+		ft_rrb(b);
+	(*j)++;
 }

@@ -6,7 +6,7 @@
 /*   By: cassassi <cassassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:48:31 by cassassi          #+#    #+#             */
-/*   Updated: 2021/08/25 13:23:22 by cassassi         ###   ########.fr       */
+/*   Updated: 2021/09/09 16:46:50 by cassassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,17 @@ void	ft_quick_sort(t_pile *a, t_pile *b)
 {
 	if (ft_checkifsorted(a) == 1 && b->size == 0)
 		return ;
-	while (a->sub[a->i] > 5 && ft_checkifsorted(a) == 0)
+	while (a->sub[a->i] > 6 && ft_checkifsorted(a) == 0)
 	{
 		b->i++;
 		b->sub[b->i] = 0;
 		handle_pile_a(a, b);
 	}
-	if (a->sub[a->i] <= 5 && a->sub[a->i] > 0)
+	if (a->sub[a->i] <= 6 && a->sub[a->i] > 0)
 		ft_fiveunder_a(a, b);
-	if (b->sub[b->i] <= 5 && b->sub[b->i] > 0)
+	if (b->sub[b->i] <= 6 && b->sub[b->i] > 0)
 		ft_fiveunder_b(a, b);
-	else if (b->sub[b->i] > 5)
+	else if (b->sub[b->i] > 6)
 		handle_pile_b(a, b);
 	if (ft_checkifallsorted(a) == 1
 		&& ft_checkifallreversesorted(b) == 1)
